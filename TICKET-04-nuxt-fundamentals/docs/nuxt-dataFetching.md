@@ -1,0 +1,4 @@
+- define Data Fetching
+- the three types and the difference between them
+- difference between await and lazy
+-
