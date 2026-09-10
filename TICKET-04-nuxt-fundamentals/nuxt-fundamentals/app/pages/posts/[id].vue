@@ -1,10 +1,15 @@
 <script setup lang="ts">
 const route = useRoute()
-const postId = route.params.id
-const { data: product, error } = await useFetch(`/api/products/${postId}`)
+const postsId = route.params.id
+const { data: posts, status } = await useFetch(`/api/post/${postsId}`)
 </script>
 <template>
-  <h1>Post {{ postId }}</h1>
-  <p>{{ product.title }}</p>
-  <p>{{ product.description }}</p>
+  <div>
+    <div v-if="status === 'pending'">Loading post...</div>
+    <div v-else-if="!posts">Post not found.</div>
+    <div v-else>
+      <p>Title: {{ posts.title }}</p>
+      <p>Body: {{ posts.body }}</p>
+    </div>
+  </div>
 </template>

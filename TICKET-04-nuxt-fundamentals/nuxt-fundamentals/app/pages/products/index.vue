@@ -1,24 +1,29 @@
 <script setup lang="ts">
+
 interface Product {
+  id: number
   title: string
   description: string
   price: number
   thumbnail: string
 }
 
-const { data: product, error } = await useFetch<Product>(`/api/products/`, {
-  pick: ['title', 'description', 'price', 'thumbnail']
-})
+const { data: prodList, error } = await useFetch<Product[]>(`/api/products/`);
 </script>
 <template>
   <div>
     <div v-if="error">Failed to load product.{{ error.message }}</div>
-    <div v-else-if="!product">Loading product...</div>
+    <div v-else-if="!prodList">Loading product...</div>
     <div v-else>
-      <h1>{{ product.title }}</h1>
-      <p>{{ product.description }}</p>
-      <p>Price: ${{ product.price }}</p>
-      <img :src="product.thumbnail" :alt="product.title" />
+      <div v-for="product in prodList" :key="product.id">
+        <ul>
+          <li>
+            <NuxtLink :to="`/products/${product.id}`">
+              Product Title: {{ product.title }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
