@@ -2,7 +2,9 @@
   <div>
     <h2>{{ recipe.name }}</h2>
     <p>Ingredients: {{ recipe.ingredients?.join(', ') || 'N/A' }}</p>
-    <p>Created At: {{ recipe.createdAt ? new Date(recipe.createdAt).toLocaleDateString() : 'N/A' }}</p>
+    <p>
+      Created At: {{ recipe.createdAt ? new Date(recipe.createdAt).toLocaleDateString() : 'N/A' }}
+    </p>
     <p>Vegetarian: {{ recipe.isVegetarian ? 'Yes' : 'No' }}</p>
   </div>
   <div>

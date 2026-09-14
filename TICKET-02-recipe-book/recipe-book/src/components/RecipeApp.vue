@@ -1,5 +1,5 @@
 <template>
-  <div v-if="status === 'loading'">Loading recipes...</div>
+  <div v-if="status === 'loading'" class="">Loading recipes...</div>
   <div v-else-if="status === 'error'">Failed to load recipes.</div>
 
   <div v-else-if="status === 'success'">
@@ -23,5 +23,14 @@ import RecipeList from './RecipeList.vue'
 import StatsDisplay from './StatsDisplay.vue'
 import { useRecipes } from '@/composables/useRecipes'
 
-const { status, recipes, sortBy, sortedRecipes, vegetarianCount, totalCount, handleAddRecipe, handleDeleteRecipe } = useRecipes()
+const {
+  status,
+  sortBy,
+  sortedRecipes,
+  vegetarianCount,
+  totalCount,
+  handleAddRecipe,
+  handleDeleteRecipe,
+} = useRecipes()
 </script>
+<style></style>
