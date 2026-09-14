@@ -3,7 +3,11 @@ import RecipeApp from './components/RecipeApp.vue'
 </script>
 
 <template>
-  <RecipeApp />
+  <div class="content">
+    <RecipeApp />
+  </div>
 </template>
 
 <style scoped></style>
+
+<style></style>
