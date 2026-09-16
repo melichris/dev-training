@@ -26,22 +26,21 @@ A small Vue 3 + TypeScript application for viewing, adding, deleting, and sortin
 ## Project Structure
 
 ```
-recipe-book/
-├── src/
-│   ├── components/
-│   │   ├── RecipeList.vue
-│   │   ├── RecipeItem.vue
-│   │   ├── RecipeForm.vue
-│   │   └── StatsDisplay.vue
-│   ├── composables/
-│   │   └── useRecipes.ts
-│   ├── types/
-│   │   └── types.ts
-│   └── App.vue
-├── TICKET.md
-├── APPROACH.md
-├── REPORT.md
-└── README.md
+src
+├── App.vue
+├── components
+│   ├── RecipeApp.vue
+│   ├── RecipeForm.vue
+│   ├── RecipeItem.vue
+│   ├── RecipeList.vue
+│   └── StatsDisplay.vue
+├── composables
+│   └── useRecipes.ts
+├── data
+│   └── mockRecipes.ts
+├── main.ts
+└── types
+    └── types.ts
 ```
 
 ## Getting Started
@@ -54,7 +53,7 @@ npm run dev
 ## Type Checking
 
 ```bash
-npx vue-tsc --noEmit
+npx vue-tsc --build
 ```
 
 ## Out of Scope
@@ -66,6 +65,6 @@ npx vue-tsc --noEmit
 
 ## Related Documents
 
-- [`TICKET.md`](./TICKET.md) — objective, scope, acceptance criteria, Definition of Done
-- [`APPROACH.md`](./APPROACH.md) — planned implementation approach
-- [`REPORT.md`](./REPORT.md) — work completed, technical decisions, difficulties, evidence
+- [`TICKET.md`](../TICKET.md) — objective, scope, acceptance criteria, Definition of Done
+- [`APPROACH.md`](../APPROACH.md) — planned implementation approach
+- [`REPORT.md`](../REPORT.md) — work completed, technical decisions, difficulties, evidence

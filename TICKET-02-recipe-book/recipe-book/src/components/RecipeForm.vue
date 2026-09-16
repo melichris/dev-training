@@ -89,7 +89,7 @@ form {
   color: #333;
 }
 
-input[type="text"],
+input[type='text'],
 input:not([type]) {
   padding: 8px 12px;
   border: 1px solid #ccc;
