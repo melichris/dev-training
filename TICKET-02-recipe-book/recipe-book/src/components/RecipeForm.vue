@@ -11,7 +11,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { NewRecipe } from '@/types/types'
-
 const form = reactive({
   name: '',
   ingredients: '',

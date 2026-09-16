@@ -1,6 +1,6 @@
 import type { NewRecipe, Status, Recipe, SortBy } from '@/types/types'
 import { computed, onMounted, ref } from 'vue'
-import { mockRecipes } from '@/types/types'
+import { mockRecipes } from '@/data/mockRecipes'
 export function useRecipes() {
   const status = ref<Status>('loading')
   const recipes = ref<Recipe[]>([])
@@ -28,20 +28,19 @@ export function useRecipes() {
     setTimeout(() => {
       try {
         const data = Object.values(mockRecipes)
-        if (!data.length) throw new Error('No recipes found')
-        recipes.value = data
+        if (!data.length) recipes.value = data
         status.value = 'success'
       } catch (error) {
-        console.error('Error fetching recipes:', error)
         status.value = 'error'
       }
     }, 2000)
   })
   function handleAddRecipe(newRecipe: NewRecipe) {
+    const date = Date.now()
     const recipe: Recipe = {
       ...newRecipe,
-      id: Date.now(),
-      createdAt: Date.now(),
+      id: date,
+      createdAt: date,
     }
     recipes.value.push(recipe)
   }
