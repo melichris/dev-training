@@ -59,15 +59,15 @@ _(Exit code 0 confirms zero type declaration errors remain across workspace file
 
 - **Application Shell & Form Loading State:**
 
-* ![Loading](image.png)
+* ![Loading](./images/loading.png)
 
 - **Active Filter Shuffling Display Blocks (Vegetarian Toggle):**
 
-* ![Sortby: isVegeterian](image-1.png)
+* ![Sortby: isVegeterian](./images/sortBy.png)
 
 - **Form Validation Guard Intercepting Malformed Input:**
 
-* ![form validation work](image-2.png)
+* ![form validation work](./images/validation.png)
 
 ## 6. Acceptance Criteria Status
 
