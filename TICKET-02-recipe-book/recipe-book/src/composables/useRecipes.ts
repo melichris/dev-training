@@ -27,7 +27,8 @@ export function useRecipes() {
     setTimeout(() => {
       try {
         const data = Object.values(mockRecipes)
-        if (!data.length) recipes.value = data
+        if (!data.length) throw new Error()
+        recipes.value = data
         status.value = 'success'
       } catch (error) {
         status.value = 'error'
