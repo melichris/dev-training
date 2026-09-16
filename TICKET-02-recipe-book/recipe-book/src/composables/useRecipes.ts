@@ -12,7 +12,6 @@ export function useRecipes() {
     } else if (sortBy.value === 'createdAt') {
       return sorted.sort((a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0))
     } else {
-      // vegetarian: group vegetarian recipes first
       return sorted.sort((a, b) => Number(b.isVegetarian) - Number(a.isVegetarian))
     }
   })

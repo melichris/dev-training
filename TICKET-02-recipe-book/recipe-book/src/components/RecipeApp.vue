@@ -6,25 +6,15 @@
     <StatsDisplay :totalCount="totalCount" :vegetarianCount="vegetarianCount" />
 
     <div class="sort-controls">
-      <button
-        :class="{ active: sortBy === 'name' }"
-        :aria-pressed="sortBy === 'name'"
-        @click="sortBy = 'name'"
-      >
-        Sort by Name
+      <button :class="{ active: sortBy === 'name' }" :aria-pressed="sortBy === 'name'" @click="sortBy = 'name'">
+        Sort by Name (A - Z)
       </button>
-      <button
-        :class="{ active: sortBy === 'createdAt' }"
-        :aria-pressed="sortBy === 'createdAt'"
-        @click="sortBy = 'createdAt'"
-      >
-        Sort by Date
+      <button :class="{ active: sortBy === 'createdAt' }" :aria-pressed="sortBy === 'createdAt'"
+        @click="sortBy = 'createdAt'">
+        Sort by Date (Newest)
       </button>
-      <button
-        :class="{ active: sortBy === 'vegetarian' }"
-        :aria-pressed="sortBy === 'vegetarian'"
-        @click="sortBy = 'vegetarian'"
-      >
+      <button :class="{ active: sortBy === 'vegetarian' }" :aria-pressed="sortBy === 'vegetarian'"
+        @click="sortBy = 'vegetarian'">
         Sort by Vegetarian
       </button>
     </div>
