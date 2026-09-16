@@ -1,5 +1,3 @@
-import { computed, onMounted, ref } from 'vue'
-
 export interface Expense {
   id: number
   amount: number

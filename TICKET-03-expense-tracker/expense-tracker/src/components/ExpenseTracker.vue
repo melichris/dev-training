@@ -20,14 +20,19 @@
 </template>
 
 <script setup lang="ts">
-
 import TotalsDisplay from './TotalsDisplay.vue'
 import ExpenseForm from './ExpenseForm.vue'
 import ExpenseList from './ExpenseList.vue'
 import { useExpenses } from '@/composables/useExpenses'
-const { status, expenses, activeCategory, filteredExpenses, totalAmount, unpaidCount, handleAddExpense, handleTogglePaid } = useExpenses()
-
-
+const {
+  status,
+  activeCategory,
+  filteredExpenses,
+  totalAmount,
+  unpaidCount,
+  handleAddExpense,
+  handleTogglePaid,
+} = useExpenses()
 </script>
 
 <style scoped></style>

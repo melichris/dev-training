@@ -105,7 +105,7 @@ Without repetition across varied domains, there is a risk of:
 ## Definition of Done
 
 - [ ] Application fully implemented and functional
-- [ ] Code compiles with zero TypeScript errors (`vue-tsc --noEmit`)
+- [ ] Code compiles with zero TypeScript errors (`vue-tsc --build`)
 - [ ] Components are reusable and follow single-responsibility structure
 - [ ] State management and composable are validated through manual testing
 - [ ] No runtime or type errors
