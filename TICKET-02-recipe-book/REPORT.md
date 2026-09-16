@@ -55,11 +55,10 @@ Implementation followed the agreed approach: types first, then reactive state pr
 
 ## Evidence
 
-- Local commit: `feat: implement recipe management app (TICKET - 02 - recipe - book)`
-
 - Screenshots: loading state, full working application (stats, sort controls, form, list), post - add state, post - delete state - to be attached by developer as local screenshots.
-
-- `vue - tsc  -  - noEmit` run with zero errors.
+- ![Loading](image.png)
+- ![Sortby: isVegeterian](image-1.png)
+- ![form validation work](image-2.png)
 
 ## Acceptance Criteria Status
 

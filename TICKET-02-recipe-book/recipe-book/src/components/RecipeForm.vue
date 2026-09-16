@@ -54,3 +54,8 @@ function handleSubmit() {
   form.isVegetarian = false
 }
 </script>
+<style scoped>
+.error {
+  color: red;
+}
+</style>
