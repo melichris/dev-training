@@ -15,7 +15,7 @@
       </button>
       <button :class="{ active: sortBy === 'vegetarian' }" :aria-pressed="sortBy === 'vegetarian'"
         @click="sortBy = 'vegetarian'">
-        Sort by Vegetarian
+        Sort by Vegetarian First
       </button>
     </div>
 
