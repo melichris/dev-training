@@ -52,8 +52,8 @@ function validate(): boolean {
     return false
   }
 
-  const parsedAmount = parseFloat(form.amount)
-  if (isNaN(parsedAmount) || parsedAmount <= 0) {
+  const parsedAmount = Number(form.amount.trim())
+  if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
     errorMessage.value = 'Amount must be a positive number.'
     return false
   }
