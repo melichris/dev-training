@@ -52,7 +52,7 @@ function validate(): boolean {
     return false
   }
 
-  const parsedAmount = Number(form.amount.trim())
+  const parsedAmount = Number(form.amount)
   if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
     errorMessage.value = 'Amount must be a positive number.'
     return false
