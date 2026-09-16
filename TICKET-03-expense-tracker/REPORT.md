@@ -67,7 +67,8 @@ Implementation followed the confirmed approach document, in the same order estab
 ## Evidence
 
 - Local commit history reflecting scaffold, type definitions, component implementation, integration, and composable extraction stages
-- Screenshots: loading state, full working application (totals, filters, form, list), post-add state, post-toggle-paid state _(to be attached by developer from local capture)_
+- Screenshots:
+  ![alt text](./images/image.png)
 - `vue-tsc --build` run with zero errors, confirming no outstanding type issues
 
 ## Acceptance Criteria Status
