@@ -76,8 +76,8 @@ Followed a build-and-verify-immediately approach: each Nuxt concept (routing, th
 | Implementation completed and manually tested   | ✅                           |
 | Both success and error paths explicitly tested | ✅                           |
 | No console errors                              | ✅                           |
-| Code committed with descriptive messages       | ⬜ Pending                   |
-| Evidence captured (screenshots)                | ⬜ Pending                   |
+| Code committed with descriptive messages       | ✅                           |
+| Evidence captured (screenshots)                | ✅                           |
 | Technical difficulties documented              | ✅                           |
 | Code review completed                          | ⬜ Pending reviewer sign-off |
 | QA validated                                   | ⬜ Pending                   |
