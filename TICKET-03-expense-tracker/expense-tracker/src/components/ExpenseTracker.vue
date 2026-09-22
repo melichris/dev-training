@@ -22,6 +22,10 @@
         @click="activeCategory = 'bills'">
         Bills
       </button>
+      <button :class="{ active: activeCategory === 'bills' }" :aria-pressed="activeCategory === 'bills'"
+        @click="activeCategory = 'wife'">
+        Wife
+      </button>
       <button :class="{ active: activeCategory === 'others' }" :aria-pressed="activeCategory === 'others'"
         @click="activeCategory = 'others'">
         Others

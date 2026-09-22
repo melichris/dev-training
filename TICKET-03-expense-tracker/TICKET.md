@@ -37,7 +37,7 @@ Without repetition across varied domains, there is a risk of:
 - Allow users to mark an expense as paid/unpaid
 - Ensure state updates immediately
   **Category Filtering**
-- Allow filtering expenses by category (e.g. food, transport, bills, other)
+- Allow filtering expenses by category (e.g. food, transport, bills, others)
 - Include an "all categories" option
   **Aggregate Statistics**
 - Display total amount across all (or filtered) expenses

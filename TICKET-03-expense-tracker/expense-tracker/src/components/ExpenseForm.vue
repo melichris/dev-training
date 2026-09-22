@@ -18,6 +18,7 @@
             <option value="food">Food</option>
             <option value="transport">Transport</option>
             <option value="bills">Bills</option>
+            <option value="wife">wife</option>
             <option value="others">Others</option>
           </select>
         </label>
@@ -68,7 +69,6 @@ function submitForm() {
   const newExpense: NewExpense = {
     description: form.description.trim(),
     amount: parseFloat(form.amount),
-    date: new Date().toISOString(),
     category: category.value,
     paid: false,
   }

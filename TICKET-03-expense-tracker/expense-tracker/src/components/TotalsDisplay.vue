@@ -2,7 +2,7 @@
   <div class="totals-display" aria-label="Expense Summary">
     <div class="stat-card">
       <span class="stat-label">Total Amount</span>
-      <span class="stat-value font-mono">${{ props.totalAmount.toFixed(2) }}</span>
+      <span class="stat-value font-mono">{{ currencySymbol }}{{ props.totalAmount.toFixed(2) }}</span>
     </div>
 
     <div class="stat-card" :class="{ 'has-unpaid': props.unpaidCount > 0 }">
@@ -13,6 +13,10 @@
 </template>
 
 <script setup lang="ts">
+import { inject } from 'vue';
+
+
+const currencySymbol = inject<string>('currencySymbol', '$')
 const props = defineProps<{
   totalAmount: number
   unpaidCount: number

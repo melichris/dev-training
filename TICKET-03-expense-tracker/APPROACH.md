@@ -5,7 +5,7 @@
 
 ## Planned Approach
 
-1. **Types first** — define the `Expense` interface (`id`, `description`, `amount`, `category`, `paid?`), a `Category` union type (`"food" | "transport" | "bills" | "other"`), `NewExpense = Omit<Expense, "id">`, and a mock dataset (`Record<number, Expense>`) with a mix of categories and paid/unpaid states.
+1. **Types first** — define the `Expense` interface (`id`, `description`, `amount`, `category`, `paid?`), a `Category` union type (`"food" | "transport" | "bills" | "others"`), `NewExpense = Omit<Expense, "id">`, and a mock dataset (`Record<number, Expense>`) with a mix of categories and paid/unpaid states.
 2. **Reactive state inline first, in a top-level container component (`ExpenseTracker.vue`)** — build `status`, `expenses`, `activeCategory` (including an `"all"` option), and computed values (`filteredExpenses`, `totalAmount`, `unpaidCount`) directly in `ExpenseTracker.vue`, alongside a simulated `onMounted` load. Logic will be written fresh rather than copied from the Recipe Book implementation, using that project only as a structural reference. `ExpenseTracker.vue` is mounted from `App.vue`, mirroring the `RecipeApp.vue` → `App.vue` structure used in TICKET-02, for consistency across tickets.
 3. **Component split**, matching the ticket's required architecture:
    - `ExpenseList.vue` — renders `filteredExpenses`, delegates each row to `ExpenseRow`

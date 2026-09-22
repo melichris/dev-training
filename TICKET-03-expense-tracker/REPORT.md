@@ -89,16 +89,16 @@ Implementation followed the confirmed approach document, in the same order estab
 
 ## Definition of Done
 
-| Requirement                                                          | Status                        |
-| -------------------------------------------------------------------- | ----------------------------- |
-| Application fully implemented and functional                         | ✅                            |
-| Code compiles with zero TypeScript errors                            | ✅ (`vue-tsc --noEmit` clean) |
-| Components are reusable and follow single-responsibility structure   | ✅                            |
-| State management and composable are validated through manual testing | ✅                            |
-| No runtime or type errors                                            | ✅                            |
-| README added                                                         | ⬜ Pending                    |
-| Ready for demo or onboarding reference use                           | ✅                            |
-| Code reviewed                                                        | ⬜ Pending reviewer sign-off  |
+| Requirement                                                          | Status                       |
+| -------------------------------------------------------------------- | ---------------------------- |
+| Application fully implemented and functional                         | ✅                           |
+| Code compiles with zero TypeScript errors                            | ✅ (`type-check` clean)      |
+| Components are reusable and follow single-responsibility structure   | ✅                           |
+| State management and composable are validated through manual testing | ✅                           |
+| No runtime or type errors                                            | ✅                           |
+| README added                                                         | ✅                           |
+| Ready for demo or onboarding reference use                           | ✅                           |
+| Code reviewed                                                        | ⬜ Pending reviewer sign-off |
 
 ## Next Step
 

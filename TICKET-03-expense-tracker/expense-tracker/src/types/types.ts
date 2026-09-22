@@ -2,12 +2,11 @@ export interface Expense {
   id: number
   amount: number
   description: string
-  date: string
   category: Category
   paid?: boolean
 }
 
-export type Category = 'food' | 'transport' | 'bills' | 'others'
+export type Category = 'food' | 'transport' | 'bills' | 'others' | 'wife'
 
 export type NewExpense = Omit<Expense, 'id'>
 

@@ -1,6 +1,6 @@
 import { ref, computed, onMounted, provide } from 'vue'
 import type { Expense, NewExpense, Category, Status } from '@/types/types'
-import { mockExpenses } from '@/types/types'
+import { mockExpenses } from '@/data/mockExpenses'
 
 export function useExpenses() {
   const status = ref<Status>('loading')
