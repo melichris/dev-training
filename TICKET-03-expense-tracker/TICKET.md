@@ -2,7 +2,7 @@
 
 **Type:** Training / Skill Development
 **Category:** Frontend — Vue 3 / TypeScript Fundamentals
-**Status:** Not Started
+**Status:** Implemented awaiting review
 
 ## Description
 
@@ -29,17 +29,19 @@ Without repetition across varied domains, there is a risk of:
   - Amount
   - Category
   - Paid status (optional metadata)
-    **Add Expense**
+  ## **Add Expense**
 - Provide a form to add a new expense
 - Validate inputs before submission (description required, amount must be a positive number)
 - Update the UI reactively upon creation
-  **Toggle Paid Status**
+  ## **Toggle Paid Status**
 - Allow users to mark an expense as paid/unpaid
 - Ensure state updates immediately
-  **Category Filtering**
+
+## **Category Filtering**
+
 - Allow filtering expenses by category (e.g. food, transport, bills, others)
 - Include an "all categories" option
-  **Aggregate Statistics**
+  ## **Aggregate Statistics**
 - Display total amount across all (or filtered) expenses
 - Display count of unpaid expenses
 - Ensure stats update reactively when data changes
@@ -50,26 +52,30 @@ Without repetition across varied domains, there is a risk of:
 
 - Define an `Expense` interface
 - Enforce type safety across components and state
-  **Reactive State Management**
+
+## **Reactive State Management**
+
 - Use Vue reactivity (`ref`, `reactive`, `computed`)
 - Maintain a single source of truth for expenses
   **Lifecycle Data Loading**
 - Load initial expense data using `onMounted`
-  **Component Architecture**
+  ## **Component Architecture**
 - Split UI into reusable components:
   - `ExpenseList`
   - `ExpenseRow`
   - `ExpenseForm`
   - `TotalsDisplay`
-    **Composable Logic**
+  ## **Composable Logic**
 - Extract reusable logic into a composable (`useExpenses`)
 - Handle CRUD operations, filtering logic, and derived state (totals)
-  **State Derivation**
+
+## **State Derivation**
+
 - Use computed properties for:
   - Filtered expense list
   - Total amount
   - Unpaid count
-    **Provide/Inject**
+  ## **Provide/Inject**
 - Provide a `currencySymbol` value from a top-level component, consumed by a descendant component without prop drilling
 
 ### Out of Scope

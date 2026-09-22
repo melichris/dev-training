@@ -69,6 +69,7 @@ function submitForm() {
   const newExpense: NewExpense = {
     description: form.description.trim(),
     amount: parseFloat(form.amount),
+    date: new Date().toISOString(),
     category: category.value,
     paid: false,
   }

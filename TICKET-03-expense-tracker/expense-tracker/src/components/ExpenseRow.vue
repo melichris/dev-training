@@ -3,6 +3,7 @@
     <span class="description">{{ props.expense.description }}</span>
     <span class="amount">{{ currencySymbol }}{{ props.expense.amount.toFixed(2) }}</span>
     <span class="category-badge">{{ props.expense.category }}</span>
+    <span class="date">{{ props.expense.date }}</span>
     <span class="status" :class="props.expense.paid ? 'paid' : 'unpaid'">
       {{ props.expense.paid ? 'Paid' : 'Unpaid' }}
     </span>
@@ -30,7 +31,7 @@ const currencySymbol = inject<string>('currencySymbol', '$')
 <style scoped>
 .expense-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
   align-items: center;
   gap: 16px;
   padding: 12px 16px;
