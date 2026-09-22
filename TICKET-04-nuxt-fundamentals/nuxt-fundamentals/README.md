@@ -6,6 +6,10 @@ A small multi-page Nuxt 4 application demonstrating file-based routing, layouts,
 **Type:** Training / Skill Development
 **Stack:** Nuxt 4, Vue 3, TypeScript
 
+## Package Manager
+
+This project uses **npm** as its package manager. The pnpm lockfile/config was removed to avoid lockfile drift and ensure dependency installs are consistent across the workspace.
+
 ## Note on Version
 
 This project was originally scoped around Nuxt 3, per the initial learning roadmap. Nuxt 3 reached end-of-life on July 31, 2026 and no longer receives security patches, so this project uses **Nuxt 4** (the current actively maintained version) instead.
