@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const route = useRoute()
 const postsId = route.params.id
-const { data: posts, status } = await useFetch(`/api/post/${postsId}`)
+const { data: posts, status } = await useFetch(`/api/post/${postsId}`, {
+  lazy: true
+})
 </script>
 <template>
   <div>

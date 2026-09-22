@@ -1,6 +1,10 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id");
 
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  await sleep(2000);
   const posts = [
     { id: 1, title: "First Post", body: "This is the first post." },
     { id: 2, title: "Second Post", body: "This is the second post." },

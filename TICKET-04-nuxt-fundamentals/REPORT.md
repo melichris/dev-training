@@ -48,10 +48,11 @@ Followed a build-and-verify-immediately approach: each Nuxt concept (routing, th
 - Local Nuxt 4 project (`nuxt-fundamentals`), version confirmed via `package.json`
 - Manually verified: static routes, nested route, dynamic route, both layouts, both fetch states (loading/success) and both outcome states (found/not-found) on the post detail page
 - Screenshots:
-  ![alt text](image.png)
-  ![alt text](image-1.png)
-  ![alt text](image-2.png)
-  ![alt text](image-3.png)
+  ![alt text](./images/image.png)
+  ![alt text](./images/image-1.png)
+  ![alt text](./images/image-2.png)
+  ![alt text](./images/image-3.png)
+  ![alt text](./images/image-4.png)
 
 ## Acceptance Criteria Status
 
