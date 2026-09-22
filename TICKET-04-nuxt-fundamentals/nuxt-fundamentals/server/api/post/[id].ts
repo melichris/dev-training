@@ -10,6 +10,11 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  await sleep(2000);
+
   const post = posts.find((item: Post) => item.id === Number(id));
 
   if (!post) {
