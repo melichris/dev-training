@@ -16,20 +16,27 @@ This project was originally scoped around Nuxt 3, per the initial learning roadm
 
 ## Features
 
-- Static routes (`/`, `/about`)
-- Nested route (`/posts`)
-- Dynamic route (`/posts/[id]`)
-- Client-side navigation via `<NuxtLink>`
-- Two layouts: a default layout with navigation, and an alternate minimal layout applied per-page via `definePageMeta`
-- Data fetching via `useFetch`, backed by real Nuxt server API routes
-- Explicit loading and error states, including a verified not-found path for invalid post ids
+- File-based routing with static pages such as `/` and `/about`
+- Nested route for `/posts`
+- Dynamic route for `/posts/[id]`
+- Client-side navigation via `<NuxtLink>` without full page reloads
+- Default shared layout with global navigation
+- Alternative per-page layout via `definePageMeta` (`minimal` layout)
+- Data fetching using `useFetch` and `useAsyncData` patterns
+- Loading, error, and not-found handling for route-driven content
+- Route parameter validation and page-specific rendering decisions
+- SSR / SSG / CSR concepts with route-level rendering control
 
 ## Tech & Patterns Demonstrated
 
-- **Routing:** file-based routing under `app/pages/`, including dynamic segments
-- **Layouts:** `<NuxtLayout>` / `<NuxtPage />`, per-page layout override via `definePageMeta`
-- **Data fetching:** `useFetch`, with reactive `status`/`error` handling
-- **Server routes:** mock backend under `server/api/`, including dynamic parameter resolution (`getRouterParam`) and proper HTTP error responses (`createError`)
+- **Routing:** file-based routing under `app/pages/`, including nested routes and dynamic segments
+- **Navigation:** `<NuxtLink>` for internal navigation and route transitions
+- **Layouts:** `<NuxtLayout>` / `<NuxtPage />`, with per-page layout overrides via `definePageMeta`
+- **Data fetching:** page-level fetching with `useFetch`, plus handling for `status`, `pending`, and `error`
+- **Server routes:** mock backend under `server/api/`, including dynamic parameter resolution (`getRouterParam`) and proper HTTP errors via `createError`
+- **Route validation:** `definePageMeta({ validate })` for guarding invalid parameters
+- **Route middleware:** protecting or redirecting based on page access rules
+- **Rendering modes:** SSR, SSG, and CSR differences, with route-level selection using `definePageMeta`
 
 ## Project Structure
 
@@ -51,6 +58,11 @@ nuxt-fundamentals/
 │       ├── posts.ts
 │       └── posts/
 │           └── [id].ts
+├── docs/
+│   ├── nuxt-routing.md
+│   ├── nuxt-layouts.md
+│   ├── nuxt-dataFetching.md
+│   └── nuxt-rendering-modes.md
 ├── TICKET.md
 ├── REPORT.md
 └── README.md
@@ -71,12 +83,17 @@ Visit `http://localhost:3000` and navigate via the links, or try the API routes 
 
 ## Out of Scope
 
-- SSR/SSG deep-dive (planned as a follow-up session)
+- Deep Nuxt deployment and hosting configuration
+- Advanced caching and ISR patterns
 - Pinia / global state management
 - Real database or persistent backend
 - Styling beyond basic readability
 
 ## Related Documents
 
-- [`TICKET.md`](./TICKET.md) — objective, scope, acceptance criteria, Definition of Done
-- [`REPORT.md`](./REPORT.md) — work completed, technical decisions, difficulties, evidence
+- [`../TICKET.md`](../TICKET.md) — objective, scope, acceptance criteria, Definition of Done
+- [`../REPORT.md`](../REPORT.md) — work completed, technical decisions, difficulties, evidence
+- [`../docs/nuxt-routing.md`](../docs/nuxt-routing.md) — routing concepts and examples
+- [`../docs/nuxt-layouts.md`](../docs/nuxt-layouts.md) — layouts and structure patterns
+- [`../docs/nuxt-dataFetching.md`](../docs/nuxt-dataFetching.md) — fetching patterns and status handling
+- [`../docs/nuxt-rendering-modes.md`](../docs/nuxt-rendering-modes.md) — SSR, SSG, CSR, and route-level control
