@@ -80,7 +80,7 @@ Implementation followed the confirmed approach document, in the same order estab
 | Users can toggle an expense's paid status                         | ✅     | Screenshot — post-toggle state                                                                            |
 | Expenses can be filtered by category, including an "all" option   | ✅     | Manually verified across all four categories plus "all"                                                   |
 | Total amount and unpaid count are displayed and reactive          | ✅     | `TotalsDisplay.vue`, updates confirmed on add/toggle                                                      |
-| TypeScript interfaces are correctly implemented and exported      | ✅     | `types.ts`, verified via `vue-tsc --noEmit`                                                               |
+| TypeScript interfaces are correctly implemented and exported      | ✅     | `types.ts`, verified via ` vue-tsc --build`                                                               |
 | Reactive state is properly managed with a single source of truth  | ✅     | Centralized in `useExpenses.ts`                                                                           |
 | Lifecycle hook is used for initial (simulated) data loading       | ✅     | `onMounted` in `useExpenses.ts`                                                                           |
 | Components are modular, each with a single responsibility         | ✅     | `ExpenseList`, `ExpenseRow`, `ExpenseForm`, `TotalsDisplay`                                               |

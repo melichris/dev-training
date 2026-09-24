@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Frontend — Nuxt 4 / Pinia
 **Project:** `nuxt-with-pinia` (new, dedicated Nuxt 4 project)
-**Status:** Not Started
+**Status:** Awaiting QA-review
 
 ## Description
 
@@ -77,7 +77,7 @@ Without this foundation, there is a risk of:
 - [ ] The store is consumed in at least two different components, with changes in one visibly reflected in the other
 - [ ] `storeToRefs` is correctly used to destructure reactive state/getters, with the reactivity-loss problem demonstrated first (destructuring without it) for comparison
 - [ ] A reset-to-initial-state mechanism is implemented and demonstrated
-- [ ] No TypeScript errors (`vue-tsc --noEmit` clean)
+- [ ] No TypeScript errors (` vue-tsc --build` clean)
 
 ## Risks & Open Points
 

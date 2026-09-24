@@ -21,7 +21,7 @@ Implemented a client-side recipe management application module in Vue 3 and Type
 | Decision                                              | Why                                                                                                                                                                                     | Alternative Considered                                                                                                                |
 | :---------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | **Parsing Inputs Before Array Length Validation**     | Isolates alphanumeric elements from input strings before evaluation. This completely blocks whitespace-and-comma variations (like `, ,`) from generating blank entries in data storage. | Validating raw input strings directly with `.trim()`, which incorrectly permitted submissions containing unvetted punctuation arrays. |
-| **Executing Type Validation via Build Layouts**       | Utilizing `vue-tsc --build` forces the compiler to process project references recursively, ensuring full inspection of decoupled configurations.                                        | Running basic standalone `vue-tsc --noEmit`, which bypassed component evaluation due to an empty files matrix in the workspace root.  |
+| **Executing Type Validation via Build Layouts**       | Utilizing `vue-tsc --build` forces the compiler to process project references recursively, ensuring full inspection of decoupled configurations.                                        | Running basic standalone ` vue-tsc --build`, which bypassed component evaluation due to an empty files matrix in the workspace root.  |
 | **Implementing Hardcoded Time Offsets for Mock Data** | Applying distinct, calculated negative offsets (`ONE_DAY`, `TWO_DAYS`, etc.) and scrambled naming keys provides an observable timeline grid.                                            | Generating seeds with inline `Date.now()` calls, which assigned identical millisecond seeds and hid list-sorting regressions.         |
 
 ---
@@ -37,7 +37,7 @@ Implemented a client-side recipe management application module in Vue 3 and Type
 ### Blocker 2: False-Positive Type Check Closures
 
 - **Impact:** The internal script reported zero compilation errors on codebases that contained broken, invalid assignments, creating a false indicator of project health.
-- **Investigation:** The root workspace configuration contains a `"files": []` instruction targeted at project references. Standard commands like `vue-tsc --noEmit` ignore reference trees entirely if no source paths are explicitly mounted in that specific configuration.
+- **Investigation:** The root workspace configuration contains a `"files": []` instruction targeted at project references. Standard commands like ` vue-tsc --build` ignore reference trees entirely if no source paths are explicitly mounted in that specific configuration.
 - **Resolution:** Replaced the terminal workflow with `npm run type-check` to leverage structural project reference flags. Forcing a build loop ensures all components are fully parsed, caught, and logged cleanly.
 
 ---

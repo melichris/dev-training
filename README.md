@@ -25,7 +25,7 @@ Type-checking
 For Vue + TypeScript projects, use `vue-tsc` to type-check `.vue` files:
 
 ```bash
-npx vue-tsc --noEmit
+npx  vue-tsc --build
 ```
 
 Contributing
