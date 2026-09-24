@@ -43,10 +43,11 @@ No other blockers encountered — installation, module registration, and each su
 
 ## Evidence
 
-- Local project: `nuxt-with-pinia`
+Local project: `nuxt-with-pinia`
+
 - All seven steps manually verified in-browser, including the deliberately-broken `storeToRefs` case (confirmed to fail before the fix was applied)
-- Commit: _(deferred by developer during implementation)_
-- Screenshots: (to be attached by developer from local capture: basic store, cross-component reactivity, storeToRefs before/after, reset behavior, and the theme store)\*
+- Commit: work committed with descriptive messages, covering steps 3 through 7
+- Screenshots: attached, covering basic store, cross-component reactivity, storeToRefs before/after, reset behavior, and the theme store
 - First store
   ![alt text](./images/image.png)
 - Extended Store
@@ -73,15 +74,15 @@ No other blockers encountered — installation, module registration, and each su
 
 ## Definition of Done
 
-| Requirement                                                         | Status                              |
-| ------------------------------------------------------------------- | ----------------------------------- | --- |
-| Implementation completed and manually tested for every core feature | ✅                                  |
-| Code compiles with zero TypeScript errors                           | ✅                                  |
-| Evidence captured (screenshots)                                     |                                     | ✅  |
-| Technical decisions and difficulties documented                     | ✅                                  |
-| Code committed with descriptive messages                            | ✅ (deferred during implementation) |
+| Requirement                                                         | Status |
+| ------------------------------------------------------------------- | ------ |
+| Implementation completed and manually tested for every core feature | ✅     |
+| Code compiles with zero TypeScript errors                           | ✅     |
+| Evidence captured (screenshots)                                     | ✅     |
+| Technical decisions and difficulties documented                     | ✅     |
+| Code committed with descriptive messages                            | ✅     |
 
 ## Next Step
 
-**Next action:** Commit all work with descriptive messages (deferred during implementation — steps 3 onward not yet committed), capture evidence screenshots, then submit for reviewer sign-off.
+**Next action:** Submit this ticket (TICKET.md, APPROACH.md, REPORT.md, code, and evidence) for reviewer sign-off.
 **Expected outcome:** Reviewer validates the full Pinia fundamentals implementation; ticket closed and used as a reference for applying Pinia to a real feature in a future ticket.
