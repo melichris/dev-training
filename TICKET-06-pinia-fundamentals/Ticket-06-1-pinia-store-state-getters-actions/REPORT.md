@@ -1,6 +1,6 @@
 # Weekly Work Report
 
-**Ticket:** TICKET-06-pinia-state-management — Pinia State Management
+**Ticket:** Ticket-06-1-pinia-store-state-getters-actions — Pinia State Management
 **Project:** `nuxt-with-pinia`
 **Type:** Training / Skill Development
 

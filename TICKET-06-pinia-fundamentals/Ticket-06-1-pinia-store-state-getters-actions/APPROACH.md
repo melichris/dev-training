@@ -1,6 +1,6 @@
 # Implementation Approach — Pinia State Management
 
-**Ticket:** TICKET-06-pinia-state-management
+**Ticket:** Ticket-06-1-pinia-store-state-getters-actions
 **Project:** `nuxt-with-pinia` (new, dedicated Nuxt 4 project — separate from `nuxt-fundamentals`)
 **Confirmed API style:** Pinia options-style store (`state`/`getters`/`actions` object), Vue 3 Composition API elsewhere
 
