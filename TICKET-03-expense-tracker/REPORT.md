@@ -85,7 +85,7 @@ Implementation followed the confirmed approach document, in the same order estab
 | Lifecycle hook is used for initial (simulated) data loading       | ✅     | `onMounted` in `useExpenses.ts`                                                                           |
 | Components are modular, each with a single responsibility         | ✅     | `ExpenseList`, `ExpenseRow`, `ExpenseForm`, `TotalsDisplay`                                               |
 | Composable pattern is used for shared logic                       | ✅     | `useExpenses.ts`                                                                                          |
-| `provide`/`inject` is used for at least one cross-component value | ✅     | `currencySymbol` provided in `ExpenseTracker.vue`, injected in `ExpenseRow.vue`                           |
+| `provide`/`inject` is used for at least one cross-component value | ✅     | `currencySymbol` provided in `useExpenses.ts`, injected in `ExpenseRow.vue`                               |
 
 ## Definition of Done
 
