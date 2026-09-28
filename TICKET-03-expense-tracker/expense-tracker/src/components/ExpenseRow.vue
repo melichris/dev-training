@@ -38,7 +38,9 @@ const currencySymbol = inject<string>('currencySymbol', '$')
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 6px;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 /* Subtle background shade for paid rows */

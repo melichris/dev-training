@@ -6,28 +6,46 @@
     <TotalsDisplay :totalAmount="totalAmount" :unpaidCount="unpaidCount" />
 
     <div class="filters">
-      <button :class="{ active: activeCategory === 'all' }" :aria-pressed="activeCategory === 'all'"
-        @click="activeCategory = 'all'">
+      <button
+        :class="{ active: activeCategory === 'all' }"
+        :aria-pressed="activeCategory === 'all'"
+        @click="activeCategory = 'all'"
+      >
         All
       </button>
-      <button :class="{ active: activeCategory === 'food' }" :aria-pressed="activeCategory === 'food'"
-        @click="activeCategory = 'food'">
+      <button
+        :class="{ active: activeCategory === 'food' }"
+        :aria-pressed="activeCategory === 'food'"
+        @click="activeCategory = 'food'"
+      >
         Food
       </button>
-      <button :class="{ active: activeCategory === 'transport' }" :aria-pressed="activeCategory === 'transport'"
-        @click="activeCategory = 'transport'">
+      <button
+        :class="{ active: activeCategory === 'transport' }"
+        :aria-pressed="activeCategory === 'transport'"
+        @click="activeCategory = 'transport'"
+      >
         Transport
       </button>
-      <button :class="{ active: activeCategory === 'bills' }" :aria-pressed="activeCategory === 'bills'"
-        @click="activeCategory = 'bills'">
+      <button
+        :class="{ active: activeCategory === 'bills' }"
+        :aria-pressed="activeCategory === 'bills'"
+        @click="activeCategory = 'bills'"
+      >
         Bills
       </button>
-      <button :class="{ active: activeCategory === 'wife' }" :aria-pressed="activeCategory === 'bills'"
-        @click="activeCategory = 'wife'">
+      <button
+        :class="{ active: activeCategory === 'wife' }"
+        :aria-pressed="activeCategory === 'bills'"
+        @click="activeCategory = 'wife'"
+      >
         Wife
       </button>
-      <button :class="{ active: activeCategory === 'others' }" :aria-pressed="activeCategory === 'others'"
-        @click="activeCategory = 'others'">
+      <button
+        :class="{ active: activeCategory === 'others' }"
+        :aria-pressed="activeCategory === 'others'"
+        @click="activeCategory = 'others'"
+      >
         Others
       </button>
     </div>

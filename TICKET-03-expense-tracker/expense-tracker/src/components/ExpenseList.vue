@@ -1,12 +1,14 @@
 <template>
   <div class="expense-list">
-    <div v-if="props.expenses.length === 0" class="empty-state">
-      No expenses to display.
-    </div>
+    <div v-if="props.expenses.length === 0" class="empty-state">No expenses to display.</div>
 
     <div v-else class="list-container">
-      <ExpenseRow v-for="expense in props.expenses" :key="expense.id" :expense="expense"
-        @toggle-paid="emit('toggle-paid', $event)" />
+      <ExpenseRow
+        v-for="expense in props.expenses"
+        :key="expense.id"
+        :expense="expense"
+        @toggle-paid="emit('toggle-paid', $event)"
+      />
     </div>
   </div>
 </template>

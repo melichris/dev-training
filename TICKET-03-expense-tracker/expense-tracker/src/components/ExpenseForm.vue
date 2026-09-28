@@ -115,8 +115,8 @@ form {
   color: #4a5568;
 }
 
-input[type="text"],
-input[type="number"],
+input[type='text'],
+input[type='number'],
 select {
   padding: 10px 12px;
   font-size: 14px;
