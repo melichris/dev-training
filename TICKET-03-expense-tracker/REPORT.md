@@ -31,9 +31,9 @@ Implementation followed the confirmed approach document, in the same order estab
 **Why:** Simpler for this training scope; avoids introducing integer-cents conversion logic that isn't the focus of this exercise.
 **Alternative considered:** Storing as integer cents to avoid floating-point rounding — flagged in the ticket as an open point; noted here as a would-need-reconsideration item for a production financial application, not resolved as a hard requirement for this exercise.
 
-**Decision:** Amount validation explicitly checks `isNaN(parsedAmount) || parsedAmount <= 0`, rather than a simple truthiness check.
-**Why:** A truthy check alone would incorrectly accept non-numeric strings and negative numbers as valid input. Explicit numeric and range validation was required to meet the ticket's "amount must be a positive number" acceptance criterion.
-**Alternative considered:** None — this was the minimum correct validation for the stated requirement.
+**Decision:** Amount validation explicitly checks `!Number.isFinite(parsedAmount) || parsedAmount <= 0`, rather than a simple truthiness check or the older `isNaN` pattern.
+**Why:** `Number.isFinite()` blocks `Infinity`, `NaN`, and other non-finite numeric edge cases, while the `<= 0` guard rejects zero and negatives. This is the correct rule for the reviewed validation cases (`Infinity`, `0`, `-5`, and `1e3`) and satisfies the 2026-09-14 QA requirement for falsifiable amount checks.
+**Alternative considered:** `isNaN(parsedAmount) || parsedAmount <= 0`, which allowed `Infinity` to pass as a numeric value and therefore did not meet the validation requirement.
 
 **Decision:** `handleTogglePaid` mutates the `paid` property on the matched object inside the `expenses` array, rather than replacing the whole array.
 **Why:** Vue's reactivity proxies into array contents, so in-place mutation of a found object correctly triggers reactivity without the overhead of rebuilding the array.
