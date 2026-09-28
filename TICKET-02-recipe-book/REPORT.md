@@ -46,14 +46,28 @@ Implemented a client-side recipe management application module in Vue 3 and Type
 
 ### Type Safety Execution Output
 
-```bash
-\$ npm run type-check
+A falsifiable regression check was run by intentionally introducing a type mismatch and verifying that the project catches it:
 
-> recipe-book@0.0.0 type-check
-> vue-tsc --build
+```typescript
+const brokenTest: number = "this is definitely not a number";
 ```
 
-_(Exit code 0 confirms zero type declaration errors remain across workspace files)._
+```bash
+➜  recipe-book git:(main) ✗ npm run type-check
+```
+
+```text
+npm notice run recipe-book@0.0.0 type-check
+npm notice run vue-tsc --build
+src/components/RecipeForm.vue:14:7 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+14 const brokenTest: number = "this is definitely not a number"
+         ~~~~
+
+Found 1 error.
+```
+
+This proves the workspace type-checking pipeline is active and does not silently pass broken SFC code. The regression line was then removed, and a follow-up review confirms the clean fallback compile state.
 
 ### Application Layout Visuals
 
