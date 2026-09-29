@@ -1,6 +1,6 @@
 # Implementation Approach — API Integration Patterns
 
-**Ticket:** TICKET-08-api-integration
+**Ticket:** Ticket-06-3-api-integration-patterns
 **Project:** `nuxt-api-patterns` (new, dedicated Nuxt 4 project)
 
 ## Planned Approach
