@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Frontend — Nuxt 4 / TypeScript / API Layer
 **Project:** New dedicated Nuxt 4 project (`nuxt-api-patterns`)
-**Status:** Not Started
+**Status:** Ongoing
 
 ## Description
 
