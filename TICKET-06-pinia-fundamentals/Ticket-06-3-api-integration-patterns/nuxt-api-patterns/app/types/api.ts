@@ -6,7 +6,7 @@ export interface Post {
 export interface User {
   id: number;
   name: string;
-  emmail: string;
+  email: string;
 }
 export type Status = "loading" | "success" | "error";
 
