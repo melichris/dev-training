@@ -3,7 +3,7 @@ import { FetchError } from "ofetch";
 
 export async function useApi<T>(url: string): Promise<ApiResponse<T>> {
   try {
-    const data = (await $fetch<any>(url)) as T;
+    const data = (await $fetch<T>(url)) as T;
     return { data, error: null };
   } catch (err) {
     let message = "An unknown error occurred";
