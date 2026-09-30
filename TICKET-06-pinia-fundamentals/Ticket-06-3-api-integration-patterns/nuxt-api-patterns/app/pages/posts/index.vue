@@ -11,7 +11,7 @@ onMounted(() => store.fetchPosts())
     <span v-else-if="store.status === 'error'">Failed to Load Posts... </span>
     <span v-else>
       <p v-for="post in store.posts" :key="post.id">
-        <NuxtLink :to="`/users/${post.id}`">{{ post.title }}</NuxtLink>
+        <NuxtLink :to="`/posts/${post.id}`">{{ post.title }}</NuxtLink>
         <label for="title">Title: {{ post.title }}</label>
         <label for="body">Description: {{ post.body }}</label>
       </p>
