@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { useApi } from '~/composables/useApi'
-import type { Post } from '~/types/api'
+import { useApi } from "~/composables/useApi";
+import type { Post } from "~/types/api";
 
-const route = useRoute()
-const postId = route.params.id
+const route = useRoute();
+const postId = route.params.id;
 
-const status = ref<"loading" | "success" | "error">("loading")
-const post = ref<Post | null>(null)
+const status = ref<"loading" | "success" | "error">("loading");
+const post = ref<Post | null>(null);
 
 onMounted(async () => {
-  const { data, error } = await useApi<Post>(`/api/posts/${postId}`)
+  const { data, error } = await useApi<Post>(`/api/posts/${postId}`);
   if (error) {
-    status.value = 'error'
-    return
+    status.value = "error";
+    return;
   }
-  post.value = data
-  status.value = 'success'
-})
+  post.value = data;
+  status.value = "success";
+});
 </script>
 <template>
   <div>

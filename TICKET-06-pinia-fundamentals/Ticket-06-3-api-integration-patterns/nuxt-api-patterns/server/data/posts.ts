@@ -1,4 +1,4 @@
-import { Post } from "~/types/api";
+import type { Post } from "~/types/api";
 
 export const mockPost: Post[] = [
   {

@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { useApi } from '~/composables/useApi'
-import type { User } from '~/types/api'
+import { useApi } from "~/composables/useApi";
+import type { User } from "~/types/api";
 
-const route = useRoute()
-const userId = route.params.id
+const route = useRoute();
+const userId = route.params.id;
 
-const status = ref<'loading' | 'success' | 'error'>('loading')
-const user = ref<User | null>(null)
+const status = ref<"loading" | "success" | "error">("loading");
+const user = ref<User | null>(null);
 
 onMounted(async () => {
-  const { data, error } = await useApi<User>(`/api/users/${userId}`)
+  const { data, error } = await useApi<User>(`/api/users/${userId}`);
   if (error) {
-    status.value = 'error'
-    return
+    status.value = "error";
+    return;
   }
-  user.value = data
-  status.value = 'success'
-})
+  user.value = data;
+  status.value = "success";
+});
 </script>
 
 <template>
