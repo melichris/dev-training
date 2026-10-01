@@ -77,13 +77,19 @@ Local project: `nuxt-api-patterns`
 - **Verified type-check status:** `npx nuxi typecheck` initially reported `TS1484` in `server/data/posts.ts` because `Post` was imported as a normal runtime import. After switching to `import type { Post } from "~/types/api";`, the strict type check passed cleanly.
 - **Manual validation:** Confirmed the application loads the users list and posts list, navigates to detail pages, and handles missing-resource requests cleanly with an error message.
 - **Data flow validation:** Confirmed the stores encapsulate the fetch logic, and the pages only consume store state and actions rather than calling fetch logic directly in the component.
-- **Screenshots to be added later:**
+- **Screenshots and evidence of work:**
+  ![alt text](./images/image.png)
   - Users list page loading successful data
+    ![alt text](./images/image-1.png)![alt text](./images/image-2.png)
   - Posts list page loading successful data
+    ![alt text](./images/image-3.png)
   - User detail page with typed data rendered
+    ![alt text](./images/image-4.png)
   - Post detail page with typed data rendered
+    ![alt text](./images/image-5.png)
   - Error state for a missing user/post id
-  - An editor view showing the typed API contracts and returned data shape
+    ![alt text](./images/image-6.png)
+    ![alt text](./images/image-7.png)
 
 ## Acceptance Criteria Status
 
