@@ -69,5 +69,7 @@ async function handleSubmit() {
 
     <button type="submit">Send</button>
 
+    <p v-if="serverError" style="color: red;">{{ serverError }}</p>
+
   </form>
 </template>
