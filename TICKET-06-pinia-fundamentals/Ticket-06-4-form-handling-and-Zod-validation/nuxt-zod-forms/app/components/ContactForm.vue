@@ -14,16 +14,17 @@ const errors = reactive({
 })
 
 const submitted = ref(false)
-function handleSubmit() {
-  // reset errors first
+const serverError = ref('')
+
+async function handleSubmit() {
   errors.name = ''
   errors.email = ''
   errors.message = ''
+  serverError.value = ''
 
   const result = contactSchema.safeParse(form)
 
   if (!result.success) {
-    // loop through each failed field and assign its message
     result.error.issues.forEach((err) => {
       const field = err.path[0] as keyof typeof errors
       errors[field] = err.message
@@ -31,9 +32,17 @@ function handleSubmit() {
     return
   }
 
-  // if we reach here, all fields are valid
-  submitted.value = true
+  try {
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: form
+    })
+    submitted.value = true
+  } catch (err: any) {
+    serverError.value = err.data?.message || 'Server error — please try again'
+  }
 }
+
 </script>
 <template>
   <form @submit.prevent="handleSubmit">
