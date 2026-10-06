@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-import { reactive } from 'vue'
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
 import { contactSchema } from '~~/shared/schemas/index'
 import type { ContactForm } from '~~/shared/schemas/index'
 const form = reactive<ContactForm>({
@@ -12,7 +12,6 @@ const errors = reactive({
   email: '',
   message: '',
 })
-
 const submitted = ref(false)
 const serverError = ref('')
 
