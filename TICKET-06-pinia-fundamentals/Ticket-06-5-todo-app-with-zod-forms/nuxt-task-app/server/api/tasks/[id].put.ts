@@ -11,10 +11,11 @@ export default defineEventHandler(async (event) => {
   const index = mockTasks.findIndex((t) => t.id === id);
   if (index === -1)
     throw createError({ statusCode: 404, statusMessage: "Task not found" });
+  const task = mockTasks[index]!;
   mockTasks[index] = {
-    ...mockTasks[index],
-    ...result.data,
-    id: mockTasks[index].id,
+    id: task.id,
+    title: result.data.title ?? task.title,
+    description: result.data.description ?? task.description,
   };
-  return mockTasks[index];
+  return mockTasks[index]!;
 });

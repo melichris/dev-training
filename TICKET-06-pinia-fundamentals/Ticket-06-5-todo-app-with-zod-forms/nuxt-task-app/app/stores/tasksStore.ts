@@ -15,7 +15,7 @@ export const useTasksStore = defineStore("tasks", {
         this.status = "error";
         return;
       }
-      this.tasks = data;
+      this.tasks = data ?? [];
       this.status = "idle";
     },
     async createTask(title: string, description?: string) {
