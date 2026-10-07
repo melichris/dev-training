@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { Book } from '~/types/book'
 
-const { books, removeBook, updateBook } = useBookStore()
+const store = useBookStore()
+const { books, loading, error, addBook, updateBook, removeBook } = store
 
-const { data, error, pending } = await useFetch<Book[]>('/api/books')
-
-onMounted(() => {
-  if (data.value && books.length === 0) books.push(...data.value)
+// Fetch on mount instead of useFetch
+onMounted(async () => {
+  if (books.length === 0) {
+    await store.fetchBooks()
+  }
 })
 
 const search = ref('')
@@ -18,12 +20,12 @@ const filteredBooks = computed(() =>
   )
 )
 
-function handleRemove(id: string): void {
-  removeBook(id)
+async function handleRemove(id: string): Promise<void> {
+  await removeBook(id)
 }
 
-function handleStatusChange(id: string, status: Book['status']): void {
-  updateBook(id, { status })
+async function handleStatusChange(id: string, status: Book['status']): Promise<void> {
+  await updateBook(id, { status })
 }
 </script>
 
@@ -36,8 +38,8 @@ function handleStatusChange(id: string, status: Book['status']): void {
       </NuxtLink>
     </div>
     <input v-model="search" placeholder="Search by title or author..." class="border rounded px-3 py-2 text-sm w-full" />
-    <p v-if="pending" class="text-gray-400 text-sm">Loading books...</p>
-    <p v-else-if="error" class="text-red-500 text-sm">Failed to load books.</p>
+    <p v-if="loading" class="text-gray-400 text-sm">Loading books...</p>
+    <p v-else-if="error" class="text-red-500 text-sm">{{ error }}</p>
     <p v-else-if="!filteredBooks.length" class="text-gray-400 text-sm">No books found. Add one!</p>
     <div v-else class="flex flex-col gap-4">
       <BookCard
