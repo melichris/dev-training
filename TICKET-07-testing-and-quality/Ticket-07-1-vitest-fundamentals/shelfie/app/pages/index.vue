@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Book } from '~/types/book'
 
+
 const { books, removeBook, updateBook } = useBookStore()
 
 const { data, error, pending } = await useFetch<Book[]>('/api/books')
 
+// seed store with fetched data on mount
 onMounted(() => {
   if (data.value) books.value = data.value
 })
@@ -12,9 +14,8 @@ onMounted(() => {
 const search = ref('')
 
 const filteredBooks = computed(() =>
-  books.value.filter((b) =>
-    b.title.toLowerCase().includes(search.value.toLowerCase()) ||
-    b.author.toLowerCase().includes(search.value.toLowerCase())
+  books.value.filter((b: Book) =>
+    b.title.toLowerCase().includes(search.value.toLowerCase())
   )
 )
 
@@ -35,11 +36,25 @@ function handleStatusChange(id: string, status: Book['status']): void {
         + Add Book
       </NuxtLink>
     </div>
-    <input v-model="search" placeholder="Search by title or author..."
+
+    <label for="book-search" class="text-sm font-medium text-gray-700">Search books</label>
+    <input id="book-search" v-model="search" placeholder="Search by title or author..."
       class="border rounded px-3 py-2 text-sm w-full" />
+
+    <!-- loading state -->
     <p v-if="pending" class="text-gray-400 text-sm">Loading books...</p>
-    <p v-else-if="error" class="text-red-500 text-sm">Failed to load books.</p>
-    <p v-else-if="!filteredBooks.length" class="text-gray-400 text-sm">No books found. Add one!</p>
+
+    <!-- error state -->
+    <p v-else-if="error" class="text-red-500 text-sm">
+      Failed to load books.
+    </p>
+
+    <!-- empty state -->
+    <p v-else-if="!filteredBooks.length" class="text-gray-400 text-sm">
+      No books found. Add one!
+    </p>
+
+    <!-- book list -->
     <div v-else class="flex flex-col gap-4">
       <BookCard v-for="book in filteredBooks" :key="book.id" :book="book" @remove="handleRemove"
         @status-change="handleStatusChange">
