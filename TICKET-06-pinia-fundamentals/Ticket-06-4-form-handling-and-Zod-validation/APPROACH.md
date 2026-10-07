@@ -1,6 +1,6 @@
 # Implementation Approach — Form Handling & Validation with Zod
 
-**Ticket:** TICKET-09-form-validation-zod
+**Ticket:** TICKET-06-4-form-handling-and-zod-validation
 **Project:** `nuxt-zod-forms` (new, dedicated Nuxt 4 project)
 
 ## Planned Approach

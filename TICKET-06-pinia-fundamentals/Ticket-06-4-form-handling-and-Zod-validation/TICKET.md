@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Frontend — Nuxt 4 / TypeScript / Zod
 **Project:** New dedicated Nuxt 4 project (`nuxt-zod-forms`)
-**Status:** Not Started
+**Status:** Awaiting QA review
 
 ## Description
 
