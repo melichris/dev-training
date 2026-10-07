@@ -1,75 +1,73 @@
-# Nuxt Minimal Starter
+# Nuxt Loan Affordability Simulator
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A Nuxt 4 training project for calculating whether a loan payment fits within a safe affordability threshold based on monthly income. The app focuses on reusable composable logic, input-driven computed validation, and a simple report view that reacts to the user’s financial inputs.
 
-## Setup
+**Ticket:** TICKET-05-loan-simulator
+**Type:** Training / Skill Development
+**Stack:** Nuxt 4, Vue 3, TypeScript
 
-Make sure to install dependencies:
+## Features
+
+- Loan amount input with numeric field and range slider
+- Monthly income input with numeric field and range slider
+- Loan term and interest inputs used in the affordability calculation
+- Standard amortization formula for estimated monthly payment
+- 30% debt-to-income affordability rule
+- Live verdict showing whether the simulated loan is within the safe threshold
+- Reusable composable that centralizes the form state and calculation logic
+
+## Tech & Patterns Demonstrated
+
+- **Nuxt 4 app structure:** `app/app.vue`, `app/components`, and `app/composables`
+- **Composable logic:** `useLoanMath()` stores the state and exposes the calculation function
+- **Reactive form state:** `ref()` values for the loan inputs and computed validity guard
+- **Computed validation:** `isFormValid` only becomes true when all required values are provided
+- **Financial calculation:** standard amortization formula to estimate monthly payment
+- **Decision logic:** affordability checks against a 30% salary threshold
+
+## Project Structure
+
+```text
+my-loan-simulator/
+├── app/
+│   ├── components/
+│   │   ├── LoanForm.vue
+│   │   └── LoanReport.vue
+│   ├── composables/
+│   │   └── useLoanMath.ts
+│   └── app.vue
+├── nuxt.config.ts
+├── package.json
+├── README.md
+├── tsconfig.json
+├── public/
+└── .gitignore
+```
+
+## Getting Started
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Then open `http://localhost:3000` to use the simulator.
 
-Build the application for production:
+## Type Checking
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npx vue-tsc --build
 ```
 
-Locally preview production build:
+## Out of Scope
 
-```bash
-# npm
-npm run preview
+- Real lender APIs or persisted loan data
+- Amortization tables for every month of the repayment schedule
+- Authentication or user accounts
+- Advanced financial modeling beyond the simple affordability check
 
-# pnpm
-pnpm preview
+## Related Documents
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [`../TICKET.md`](../TICKET.md) — project objective, scope, and acceptance criteria
+- [`../APPROACH.md`](../APPROACH.md) — planned implementation and technical decisions
+- [`../REPORT.md`](../REPORT.md) — work completed, evidence, and summary
