@@ -1,42 +1,86 @@
-# expense-tracker
+# Vue Expense Tracker Dashboard
 
-This template should help get you started developing with Vue 3 in Vite.
+A small Vue 3 + TypeScript expense dashboard built to practice component composition, reactive state, computed values, and form validation. The app loads a set of mock expenses, filters them by category, summarizes the total spend and unpaid items, and lets the user add a new expense.
 
-## Recommended IDE Setup
+**Ticket:** TICKET-03-expense-tracker
+**Type:** Training / Skill Development
+**Stack:** Vue 3, Vite, TypeScript
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Recommended Browser Setup
+- Loading and success/error state handling while mock data is fetched
+- Expense summary cards for total spend and unpaid bill count
+- Category filter buttons for `all`, `food`, `transport`, `bills`, `wife`, and `others`
+- Add-expense form with validation for required description and positive amount values
+- Toggle paid/unpaid state for each expense row
+- Centralized composable logic for state management and derived values
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Tech & Patterns Demonstrated
 
-## Type Support for `.vue` Imports in TS
+- **Vue components:** dashboard shell, totals summary, filter section, form, and list rows
+- **Composable state management:** `useExpenses()` handles data loading, filtering, totals, and actions
+- **Reactive refs + computed values:** summary totals and filtered results are derived from state
+- **Form validation:** description and amount checks before adding a transaction
+- **Type-safe domain model:** typed categories, expense entries, and new-expense payloads
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Project Structure
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```text
+expense-tracker/
+├── src/
+│   ├── components/
+│   │   ├── ExpenseTracker.vue
+│   │   ├── ExpenseForm.vue
+│   │   ├── ExpenseList.vue
+│   │   ├── ExpenseRow.vue
+│   │   └── TotalsDisplay.vue
+│   ├── composables/
+│   │   └── useExpenses.ts
+│   ├── data/
+│   │   └── mockExpenses.ts
+│   ├── types/
+│   │   └── types.ts
+│   ├── App.vue
+│   ├── main.ts
+│   └── style.css
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── README.md
+└── public/
 ```
 
-### Compile and Hot-Reload for Development
+## Getting Started
 
-```sh
+```bash
+npm install
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Then open the local Vite URL in the browser to use the tracker.
 
-```sh
+## Production Build
+
+```bash
 npm run build
 ```
+
+## Type Checking
+
+```bash
+npm run type-check
+```
+
+## Out of Scope
+
+- Persistent storage or backend database integration
+- Authentication and user accounts
+- Real bank or payment API connectivity
+- Advanced analytics beyond the simple expense dashboard summary
+
+## Related Documents
+
+- [`../TICKET.md`](../TICKET.md) — objective, requirements, and acceptance criteria
+- [`../APPROACH.md`](../APPROACH.md) — planned implementation and technical decisions
+- [`../REPORT.md`](../REPORT.md) — completed work, evidence, and reflection
