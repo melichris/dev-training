@@ -16,7 +16,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #f4f7ff 0%, #eef6ff 100%);
   color: #1f2937;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .main-nav {
@@ -41,7 +41,9 @@
   color: #374151;
   background: #ffffff;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .nav-link:hover {

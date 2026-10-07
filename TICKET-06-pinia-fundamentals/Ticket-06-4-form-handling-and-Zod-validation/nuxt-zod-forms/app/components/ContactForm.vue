@@ -1,51 +1,49 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { contactSchema } from '~~/shared/schemas/index'
-import type { ContactForm } from '~~/shared/schemas/index'
+import { reactive, ref } from "vue";
+import { contactSchema } from "~~/shared/schemas/index";
+import type { ContactForm } from "~~/shared/schemas/index";
 const form = reactive<ContactForm>({
-  name: '',
-  email: '',
-  message: '',
-})
+  name: "",
+  email: "",
+  message: "",
+});
 const errors = reactive({
-  name: '',
-  email: '',
-  message: '',
-})
-const submitted = ref(false)
-const serverError = ref('')
+  name: "",
+  email: "",
+  message: "",
+});
+const submitted = ref(false);
+const serverError = ref("");
 
 async function handleSubmit() {
-  errors.name = ''
-  errors.email = ''
-  errors.message = ''
-  serverError.value = ''
+  errors.name = "";
+  errors.email = "";
+  errors.message = "";
+  serverError.value = "";
 
-  const result = contactSchema.safeParse(form)
+  const result = contactSchema.safeParse(form);
 
   if (!result.success) {
     result.error.issues.forEach((err) => {
-      const field = err.path[0] as keyof typeof errors
-      errors[field] = err.message
-    })
-    return
+      const field = err.path[0] as keyof typeof errors;
+      errors[field] = err.message;
+    });
+    return;
   }
 
   try {
-    await $fetch('/api/contact', {
-      method: 'POST',
-      body: form
-    })
-    submitted.value = true
+    await $fetch("/api/contact", {
+      method: "POST",
+      body: form,
+    });
+    submitted.value = true;
   } catch (err: any) {
-    serverError.value = err.data?.message || 'Server error — please try again'
+    serverError.value = err.data?.message || "Server error — please try again";
   }
 }
-
 </script>
 <template>
   <form @submit.prevent="handleSubmit" class="form-card">
-
     <div class="form-group">
       <label for="name">Name</label>
       <input id="name" v-model="form.name" placeholder="Your name" />
@@ -60,7 +58,11 @@ async function handleSubmit() {
 
     <div class="form-group">
       <label for="message">Message</label>
-      <textarea id="message" v-model="form.message" placeholder="Your message"></textarea>
+      <textarea
+        id="message"
+        v-model="form.message"
+        placeholder="Your message"
+      ></textarea>
       <p v-if="errors.message" class="error-text">{{ errors.message }}</p>
     </div>
 
@@ -69,7 +71,6 @@ async function handleSubmit() {
     <button type="submit">Send</button>
 
     <p v-if="serverError" class="error-text">{{ serverError }}</p>
-
   </form>
 </template>
 
@@ -98,7 +99,9 @@ textarea {
   background: #f8fafc;
   color: #0f172a;
   font: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -122,7 +125,9 @@ button {
   color: #ffffff;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 button:hover {

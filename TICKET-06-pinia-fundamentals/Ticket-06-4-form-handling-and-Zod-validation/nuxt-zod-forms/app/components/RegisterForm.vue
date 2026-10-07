@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { registerSchema } from "~~/shared/schemas/index";
 import type { RegisterForm } from "~~/shared/schemas/index";
 
@@ -18,7 +17,6 @@ const errors = reactive({
 });
 const submitted = ref(false);
 const serverError = ref("");
-
 
 const handleSubmit = async () => {
   errors.username = "";
@@ -46,13 +44,17 @@ const handleSubmit = async () => {
   // } catch (err: any) {
   //   serverError.value = err.data?.message || "Server error — please try again";
   // }
-}
+};
 </script>
 <template>
   <form @submit.prevent="handleSubmit" class="form-card">
     <div class="form-group">
       <label for="username">Username</label>
-      <input id="username" v-model="form.username" placeholder="Your username" />
+      <input
+        id="username"
+        v-model="form.username"
+        placeholder="Your username"
+      />
       <p v-if="errors.username" class="error-text">{{ errors.username }}</p>
     </div>
 
@@ -64,14 +66,26 @@ const handleSubmit = async () => {
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input id="password" type="password" v-model="form.password" placeholder="Your password" />
+      <input
+        id="password"
+        type="password"
+        v-model="form.password"
+        placeholder="Your password"
+      />
       <p v-if="errors.password" class="error-text">{{ errors.password }}</p>
     </div>
 
     <div class="form-group">
       <label for="confirmPassword">Confirm Password</label>
-      <input id="confirmPassword" type="password" v-model="form.confirmPassword" placeholder="Confirm your password" />
-      <p v-if="errors.confirmPassword" class="error-text">{{ errors.confirmPassword }}</p>
+      <input
+        id="confirmPassword"
+        type="password"
+        v-model="form.confirmPassword"
+        placeholder="Confirm your password"
+      />
+      <p v-if="errors.confirmPassword" class="error-text">
+        {{ errors.confirmPassword }}
+      </p>
     </div>
 
     <button type="submit">Register</button>
@@ -104,7 +118,9 @@ input {
   background: #f8fafc;
   color: #0f172a;
   font: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -122,7 +138,9 @@ button {
   color: #ffffff;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 button:hover {
