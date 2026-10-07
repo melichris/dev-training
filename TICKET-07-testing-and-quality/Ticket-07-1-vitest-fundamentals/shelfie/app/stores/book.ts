@@ -46,4 +46,6 @@ export const useBookStore = defineStore('book', () => {
     finishedBooks,
     avgRating,
   }
+}, {
+  persist: true,
 })

@@ -1,25 +1,25 @@
 import { computed } from 'vue'
-import { useBookStore } from './useBookStore'
+import { useBookStore } from '~/stores/book'
 
 export function useReadingStats() {
   const { books } = useBookStore()
 
-  const totalBooks = computed(() => books.value.length)
+  const totalBooks = computed(() => books.length)
 
   const finishedBooks = computed(() =>
-    books.value.filter(b => b.status === 'finished').length
+    books.filter(b => b.status === 'finished').length
   )
 
   const readingBooks = computed(() =>
-    books.value.filter(b => b.status === 'reading').length
+    books.filter(b => b.status === 'reading').length
   )
 
   const unreadBooks = computed(() =>
-    books.value.filter(b => b.status === 'unread').length
+    books.filter(b => b.status === 'unread').length
   )
 
   const avgRating = computed(() => {
-    const rated = books.value.filter(b => b.rating)
+    const rated = books.filter(b => b.rating)
     if (!rated.length) return 0
     return rated.reduce((sum, b) => sum + (b.rating ?? 0), 0) / rated.length
   })
