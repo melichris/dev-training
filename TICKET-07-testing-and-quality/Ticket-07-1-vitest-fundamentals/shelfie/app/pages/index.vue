@@ -5,15 +5,14 @@ const { books, removeBook, updateBook } = useBookStore()
 
 const { data, error, pending } = await useFetch<Book[]>('/api/books')
 
-// Only seed store if it's empty (first load)
 onMounted(() => {
-  if (data.value && books.value.length === 0) books.value = data.value
+  if (data.value && books.length === 0) books.push(...data.value)
 })
 
 const search = ref('')
 
 const filteredBooks = computed(() =>
-  books.value.filter(b =>
+  books.filter(b =>
     b.title.toLowerCase().includes(search.value.toLowerCase()) ||
     b.author.toLowerCase().includes(search.value.toLowerCase())
   )
