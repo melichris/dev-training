@@ -54,8 +54,6 @@
   - Delete task ✅
   - Reload → still logged in, tasks refetch ✅
   - Logout → redirected to `/login` ✅
-- Screenshots: _(pending)_
-- Commit: _(pending)_
 
 ## Acceptance Criteria
 

@@ -9,7 +9,7 @@ export async function useApi<T>(
 ): Promise<ApiResponse<T>> {
   try {
     const data = await $fetch<T>(url, options);
-    return { data, error: null };
+    return { data: data as T, error: null };
   } catch (err) {
     let message = "An unknown error occurred";
 
