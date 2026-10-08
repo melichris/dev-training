@@ -3,7 +3,7 @@
 **Type:** Training / Capstone Integration
 **Category:** Full-stack Nuxt 4 — Routing, Pinia, API Layer, Form Validation
 **Project:** New dedicated Nuxt 4 project (`nuxt-task-app`)
-**Status:** Not Started
+**Status:** Awaiting QA review
 
 ## Description
 

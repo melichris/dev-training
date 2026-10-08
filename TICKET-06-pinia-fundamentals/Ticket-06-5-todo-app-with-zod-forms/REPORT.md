@@ -54,6 +54,7 @@
   - Delete task ✅
   - Reload → still logged in, tasks refetch ✅
   - Logout → redirected to `/login` ✅
+- Check screenshots for evidence in the `images` folder
 
 ## Acceptance Criteria
 
