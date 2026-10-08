@@ -38,7 +38,12 @@ const handleSubmit = async () => {
 
     <div>
       <label for="password">Password</label>
-      <input id="password" v-model="form.password" type="password" placeholder="Password" />
+      <input
+        id="password"
+        v-model="form.password"
+        type="password"
+        placeholder="Password"
+      />
     </div>
     <p v-if="errors.password" style="color: red">{{ errors.password }}</p>
     <p v-if="serverError" style="color: red">{{ serverError }}</p>
