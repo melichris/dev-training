@@ -31,9 +31,15 @@ const handleSubmit = () => {
 
 <template>
   <form @submit.prevent="handleSubmit">
-    <input v-model="form.title" placeholder="Title" />
+    <label for="title">Title</label>
+    <input id="title" v-model="form.title" placeholder="Title" />
     <p v-if="errors.title" style="color: red">{{ errors.title }}</p>
-    <input v-model="form.description" placeholder="Description (optional)" />
+    <label for="description">Description</label>
+    <input
+      id="description"
+      v-model="form.description"
+      placeholder="Description (optional)"
+    />
     <button type="submit">{{ task ? "Update" : "Create" }}</button>
   </form>
 </template>
