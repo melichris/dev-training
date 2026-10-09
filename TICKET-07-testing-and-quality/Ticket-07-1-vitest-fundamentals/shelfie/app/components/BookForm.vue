@@ -1,7 +1,6 @@
-<!-- app/components/BookForm.vue -->
 <script setup lang="ts">
-import type { NewBook } from '~~/types/book'
-import { useLocalDraft } from '~/composables/useLocalDraft'
+import type { NewBook } from '~/types/book'
+import { validateBook } from '~/utils/validation'
 
 const emit = defineEmits<{
   (e: 'submit', book: NewBook): void
@@ -18,13 +17,13 @@ const form = reactive<NewBook>({
   notes: '',
 })
 
-// load saved draft on mount
+const errors = reactive<Record<string, string>>({})
+
 onMounted(() => {
   const draft = loadDraft()
   if (draft) Object.assign(form, draft)
 })
 
-// autosave draft on every change
 watch(
   () => ({ ...form }),
   (newVal) => saveDraft(newVal),
@@ -37,8 +36,16 @@ const completion = computed(() => {
 })
 
 function handleSubmit(): void {
-  if (!form.title || !form.author) return
-  emit('submit', { ...form })
+  // Clear previous errors
+  Object.keys(errors).forEach(key => delete errors[key])
+
+  const validation = validateBook(form)
+  if (!validation.success) {
+    Object.assign(errors, validation.errors)
+    return
+  }
+
+  emit('submit', validation.data!)
   Object.assign(form, { title: '', author: '', status: 'unread', rating: undefined, notes: '' })
   clearDraft()
 }
@@ -51,8 +58,17 @@ function handleSubmit(): void {
       <span class="text-sm text-gray-400">{{ completion }}% complete</span>
     </div>
 
-    <input v-model="form.title" placeholder="Title" class="border rounded px-3 py-2 text-sm" />
-    <input v-model="form.author" placeholder="Author" class="border rounded px-3 py-2 text-sm" />
+    <div class="flex flex-col gap-1">
+      <input v-model="form.title" placeholder="Title" class="border rounded px-3 py-2 text-sm"
+        :class="{ 'border-red-500': errors.title }" />
+      <p v-if="errors.title" class="text-red-500 text-xs">{{ errors.title }}</p>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <input v-model="form.author" placeholder="Author" class="border rounded px-3 py-2 text-sm"
+        :class="{ 'border-red-500': errors.author }" />
+      <p v-if="errors.author" class="text-red-500 text-xs">{{ errors.author }}</p>
+    </div>
 
     <select v-model="form.status" class="border rounded px-3 py-2 text-sm">
       <option value="unread">Unread</option>
