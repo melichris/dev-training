@@ -28,8 +28,11 @@ describe("useCounter", () => {
     decrement();
     expect(count.value).toBe(-1);
   });
-  it("should reset the count", () => {
-    const { count, reset } = withSetup(() => useCounter());
+  it("should reset the count to initial value", () => {
+    const { count, increment, reset } = withSetup(() => useCounter());
+    increment();
+    increment();
+    expect(count.value).toBe(2);
     reset();
     expect(count.value).toBe(0);
   });
