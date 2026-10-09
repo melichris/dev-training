@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — Vitest / Vue 3
 **Project:** New dedicated project (`nuxt-vitest-fundamentals`)
-**Status:** Not Started
+**Status:** Completed
 
 ## Description
 

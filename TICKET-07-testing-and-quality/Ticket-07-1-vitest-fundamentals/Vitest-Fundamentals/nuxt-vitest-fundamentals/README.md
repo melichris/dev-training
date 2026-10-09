@@ -1,75 +1,105 @@
-# Nuxt Minimal Starter
+# Nuxt Vitest Fundamentals
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A focused Nuxt 4 training project for learning the fundamentals of unit testing with Vitest. The app is intentionally small and test-driven: it exercises pure utility functions, validates Zod schemas, and verifies a composable state pattern without depending on a full Nuxt runtime.
 
-## Setup
+**Ticket:** TICKET-11-vitest-fundamentals
+**Type:** Training / Skill Development
+**Stack:** Nuxt 4, Vue 3, TypeScript, Vitest, happy-dom, Zod
 
-Make sure to install dependencies:
+## Purpose
+
+This project demonstrates the fastest layer of the testing pyramid: isolated unit tests for logic that can be validated without browser rendering or framework bootstrapping. It is designed to build confidence before moving into component testing, Pinia store testing, and broader app-level verification.
+
+## Concepts Covered
+
+- **Vitest setup** in a Nuxt project
+- **Pure utility function testing** with happy-path and edge-case coverage
+- **Zod schema validation** for login and registration rules
+- **Composable testing** using a minimal Vue app wrapper (`withSetup` pattern)
+- **Focus on test quality** rather than browser/manual validation alone
+
+## Tech & Patterns Demonstrated
+
+- **Vitest configuration:** `happy-dom` test environment and `npm test` workflow
+- **Pure function testing:** validating formatting, numeric constraints, and boundary conditions
+- **Schema validation:** `z.object()` and `.refine()` for cross-field rules
+- **Composable logic:** `useCounter()` with `count`, `increment`, `decrement`, and `reset`
+- **Test isolation:** no Nuxt runtime needed for Day 1 coverage
+
+## Project Structure
+
+```text
+nuxt-vitest-fundamentals/
+├── app/
+│   ├── composables/
+│   │   └── useCounter.ts
+│   ├── utils/
+│   │   └── helpers.ts
+│   ├── app.vue
+│   └── pages/
+├── shared/
+│   └── schemas/
+│       └── index.ts
+├── test/
+│   ├── helpers.test.ts
+│   ├── sanity.test.ts
+│   └── useCounter.test.ts
+├── .gitignore
+├── nuxt.config.ts
+├── package.json
+├── tsconfig.json
+├── vitest.config.ts
+├── README.md
+├── public/
+└── .nuxt/
+```
+
+## Getting Started
+
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Run the test suite:
 
 ```bash
-# npm
+npm test
+```
+
+Start the Nuxt app in development mode:
+
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Then open:
 
-Build the application for production:
+- `http://localhost:3000`
+
+## Production Build
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## Test Coverage Included
 
-```bash
-# npm
-npm run preview
+- Utility function tests for `formatUsername`, `isValidId`, and `clampNumber`
+- Validation coverage for login and register schemas
+- Reset behavior and state mutation tests for `useCounter()`
+- Sanity check proving the test setup is working
 
-# pnpm
-pnpm preview
+## Out of Scope
 
-# yarn
-yarn preview
+- Component testing with Vue Test Utils
+- Pinia store testing
+- Mocking API requests or async data flows
+- End-to-end browser automation
 
-# bun
-bun run preview
-```
+## Related Documents
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [`../TICKET.md`](../TICKET.md) — scope, acceptance criteria, and learning goals
+- [`../APPROACH.md`](../APPROACH.md) — implementation plan and testing strategy
+- [`../REPORT.md`](../REPORT.md) — completed work, test evidence, and technical decisions
