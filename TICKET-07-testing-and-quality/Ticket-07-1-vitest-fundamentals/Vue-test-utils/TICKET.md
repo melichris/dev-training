@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — Vue Test Utils / Vitest
 **Project:** `nuxt-vitest-fundamentals` (continuation)
-**Status:** Not Started
+**Status:** Awaiting QA review
 
 ## Description
 
