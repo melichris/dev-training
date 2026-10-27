@@ -5,15 +5,11 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  modules: [
-    '@pinia/nuxt'
-  ],
+  modules: ["@pinia/nuxt"],
 
   typescript: {
     tsConfig: {
-      include: [
-        "../playwright.config.ts"
-      ]
-    }
-  }
-})
+      include: ["../playwright.config.ts"],
+    },
+  },
+});
