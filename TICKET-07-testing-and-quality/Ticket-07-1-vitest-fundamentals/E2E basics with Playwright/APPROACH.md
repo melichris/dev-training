@@ -1,6 +1,6 @@
 # Implementation Approach — E2E Basics with Playwright
 
-**Ticket:** TICKET-14-playwright-e2e
+**Ticket:** Playwright-e2e
 **Project:** `nuxt-task-app` (capstone)
 
 ## Planned Approach

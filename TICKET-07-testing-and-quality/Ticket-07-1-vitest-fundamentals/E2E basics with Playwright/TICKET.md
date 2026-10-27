@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — E2E / Playwright
 **Project:** `nuxt-task-app` (capstone from TICKET-06-5)
-**Status:** Not Started
+**Status:**completed awaiting review
 
 ## Description
 

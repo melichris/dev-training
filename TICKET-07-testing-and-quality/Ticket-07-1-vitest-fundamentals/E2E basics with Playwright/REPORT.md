@@ -31,6 +31,16 @@ Full suite:   6 passed (13.1s)
 Repeat run:   tasks.spec.ts --repeat-each=5 -> 10 passed (21.3s)
 ```
 
+## Quality Checks
+
+| Check | Command | Result |
+|---|---|---|
+| Formatting | `npx prettier --check .` | All matched files use Prettier code style |
+| Nuxt typecheck | `npx nuxt typecheck` | Passed (3.61s) |
+| Typecheck of E2E files | `npx tsc --noEmit --ignoreConfig --skipLibCheck --target es2022 --module esnext --moduleResolution bundler --types node e2e/*.ts playwright.config.ts` | Clean, no errors (non-strict) |
+| E2E suite after formatting | `npm run test:e2e` | 6/6 passed (13.3s) |
+
+Note: `e2e/` and `playwright.config.ts` sit outside the folders `nuxt typecheck` covers, so they were checked separately with `tsc`. TypeScript 6 requires `--ignoreConfig` when files are listed on the command line alongside a `tsconfig.json`. The strict-mode check (`--strict`) has not been run yet and is planned for Day 5.
 
 ## Technical Decisions
 
@@ -46,6 +56,8 @@ Repeat run:   tasks.spec.ts --repeat-each=5 -> 10 passed (21.3s)
 
 **Invalid login tested via Zod validation, not wrong credentials.** The mock login endpoint accepts any username/password that passes the schema, so wrong credentials cannot fail.
 
+**Separate `tsc` check for E2E files.** `nuxt typecheck` does not cover `e2e/` or `playwright.config.ts`, so they are verified with a direct `tsc --noEmit --ignoreConfig` run.
+
 **`locator('#username')` over `getByLabel`.** Targeting ids directly was more reliable here.
 
 ## Difficulties / Blockers
@@ -56,6 +68,7 @@ Repeat run:   tasks.spec.ts --repeat-each=5 -> 10 passed (21.3s)
 | `page.goto('/login')` invalid URL | Config had no `baseURL`; wrote config by hand |
 | Login tests stayed on `/login?` | Hydration race; added `waitForLoadState('networkidle')` and moved to production build |
 | Strict mode violation on task title | Unique title per run |
+| `tsc` error TS5112 when listing files with a tsconfig present | Added `--ignoreConfig` (TypeScript 6 behavior) |
 | Reload test failed once, then passed | Not reproducible; 5 repeat runs all passed (10/10) |
 
 ## Acceptance Criteria
@@ -72,6 +85,7 @@ Repeat run:   tasks.spec.ts --repeat-each=5 -> 10 passed (21.3s)
 
 ## Open Items
 
+- Strict-mode typecheck of E2E files (`--strict`) not yet run, planned for Day 5
 - Logout flow is not covered (logout button label not yet confirmed)
 - The single earlier reload failure was never root-caused; it passed in all later runs, including the repeat run
 
@@ -81,8 +95,9 @@ Repeat run:   tasks.spec.ts --repeat-each=5 -> 10 passed (21.3s)
 |---|---|
 | All tests passing | Done |
 | Test output captured | Done |
+| Prettier clean | Done |
+| Typecheck clean (`nuxt typecheck` + `tsc` on E2E files) | Done |
 | Technical decisions documented | Done |
-| Screenshot | Done |
 | Committed | Done |
 
 ## Next Step
