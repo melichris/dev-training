@@ -5,7 +5,29 @@ declare(strict_types=1);
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Helpers;
+use App\User;
 
+echo "autoload ok\n\n";
+
+// 1. Test formatUsername
+echo "--- User tests ---\n";
+$user1 = new User(1, "Exsie", "alice@example.com");
+$user2 = new User(2, "Alex");
+$user3 = new User(3, "chris", "chris@gmail.com");
+
+echo $user1->displayName() . "\n";
+echo $user2->displayName() . "\n";
+echo $user3->displayName() . "\n";
+
+var_dump($user2->getEmail());
+
+try {
+    $user1->name = 'meli';
+} catch (Error $e) {
+    echo "Error: " . $e->getMessage() . "\n";
+}
+
+//_______________________
 echo "autoload ok\n\n";
 
 // 1. Test formatUsername
