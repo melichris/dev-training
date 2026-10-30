@@ -52,9 +52,11 @@ try {
 section('Arrays');
 $users = [$user1, $user2, $user3];
 
-$usersWithEmail = array_values(
-    array_filter($users, fn(User $u): bool => $u->getEmail() !== null)
-);
+$hasEmail = fn(User $u): bool => $u->getEmail() !== null;
+
+$filtered = array_filter($users, $hasEmail);
+$usersWithEmail = array_values($filtered);
+
 echo 'Without array_values: ' . json_encode($filtered) . "\n";
 echo 'With array_values:    ' . json_encode($usersWithEmail) . "\n";
 
