@@ -1,6 +1,6 @@
 # Implementation Approach: PHP Fundamentals
 
-**Ticket:** TICKET-16-php-fundamentals
+**Ticket:** TICKET-08-php-fundamentals
 **Project:** `php-fundamentals`
 
 ## Planned Approach

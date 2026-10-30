@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Backend, PHP 8
 **Project:** `php-fundamentals` (new Composer project)
-**Status:** Not Started
+**Status:** Awaiting QA review
 
 ## Description
 
