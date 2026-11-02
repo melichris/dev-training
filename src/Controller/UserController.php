@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class UserController extends AbstractController
@@ -14,6 +15,18 @@ final class UserController extends AbstractController
     public function list(): JsonResponse
     {
         return $this->json($this->getUsers());
+    }
+
+    #[Route('/api/users/{id}', name: 'api_users_show', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function show(int $id): JsonResponse
+    {
+        foreach ($this->getUsers() as $user) {
+            if ($user['id'] === $id) {
+                return $this->json($user);
+            }
+        }
+
+        return $this->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
     }
 
     private function getUsers(): array
@@ -25,4 +38,3 @@ final class UserController extends AbstractController
         ];
     }
 }
-
