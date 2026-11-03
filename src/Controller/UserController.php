@@ -6,15 +6,27 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class UserController extends AbstractController
 {
     #[Route('/api/users', name: 'api_users_list', methods: ['GET'])]
-    public function list(): JsonResponse
+    public function list(Request $request): JsonResponse
     {
-        return $this->json($this->getUsers());
+        $search = $request->query->getString('search');
+
+        $users = $this->getUsers();
+
+        if ($search !== '') {
+            $users = array_filter($users, function (array $user) use ($search): bool {
+                return str_contains(mb_strtolower($user['name']), mb_strtolower($search));
+            });
+            $users = array_values($users);
+        }
+
+        return $this->json($users);
     }
 
     #[Route('/api/users/{id}', name: 'api_users_show', methods: ['GET'], requirements: ['id' => '\d+'])]
