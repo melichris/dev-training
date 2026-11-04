@@ -62,6 +62,7 @@
 | Port 8001 later answered with a different app's 404 page | Recognised it by the Bootstrap page and `HTTP/1.0` headers; switched to 8002 and started with a sanity `curl` |
 | `curl` connection errors | The dev server tab had been closed; run the server in its own tab |
 | URL typo (`/userer`) | Corrected |
+| Project was pushed to the repo root, next to the ticket folders, and a push to `Backend` was rejected as non-fast-forward | Found two local repos sharing one remote. Moved the project into `TICKET-09-symfony/symfony-routing-controllers/` with a rename commit (`9807208`); both pushes were fast-forwards, no force-push |
 
 ## Acceptance Criteria
 
@@ -83,8 +84,179 @@
 |---|---|
 | All endpoints verified with curl | Done |
 | Technical decisions documented | Done |
-| Committed with `Refs:#09` | Done: `3d4fb34`, `52d1da5`, `d9f76ea`, `ee530bb`, `823c626`, `ede4f77` |
-| Screenshot | Pending |
+| Committed with `Refs:#09` | Done: `3d4fb34`, `52d1da5`, `d9f76ea`, `ee530bb`, `823c626`, `ede4f77`, plus the ticket-status commit and the folder move `9807208` |
+| Screenshots | Not captured; the terminal output is included as text under Evidence |
+
+## Evidence (terminal output)
+
+Screenshots were not captured during the session. The output below is copied as printed in the terminal while the work was done.
+
+### 1. Versions (`php bin/console about`, excerpt)
+
+```
+  Version              v7.4.22
+  Long-Term Support    Yes
+  End of maintenance   11/2028 (in +762 days)
+  End of life          11/2029 (in +1127 days)
+  Type                 App\Kernel
+  Environment          dev
+  Debug                true
+  Version              8.3.36
+```
+
+### 2. Routes (`php bin/console debug:router`)
+
+```
+ ---------------- -------- -------------------------- 
+  Name             Method   Path                      
+ ---------------- -------- -------------------------- 
+  _preview_error   ANY      /_error/{code}.{_format}  
+  api_users_list   GET      /api/users                
+  api_users_show   GET      /api/users/{id}           
+ ---------------- -------- -------------------------- 
+```
+
+### 3. Detail route (`php bin/console debug:router api_users_show`)
+
+```
++--------------+---------------------------------------------------------+
+| Property     | Value    |
++--------------+---------------------------------------------------------+
+| Route Name   | api_users_show    |
+| Path         | /api/users/{id}    |
+| Path Regex   | {^/api/users/(?P<id>\d+)$}sDu    |
+| Host         | ANY    |
+| Host Regex   |    |
+| Scheme       | ANY    |
+| Method       | GET    |
+| Requirements | id: \d+    |
+| Class        | Symfony\Component\Routing\Route    |
+| Defaults     | _controller: App\Controller\UserController::show()    |
+| Options      | compiler_class: Symfony\Component\Routing\RouteCompiler |
+|              | utf8: true    |
++--------------+---------------------------------------------------------+
+```
+
+### 4. List endpoint (`curl -si http://localhost:8001/api/users`)
+
+```
+HTTP/1.1 200 OK
+Host: localhost:8001
+Connection: close
+X-Powered-By: PHP/8.3.36
+Cache-Control: no-cache, private
+Date: Mon, 02 Nov 2026 10:27:32 GMT
+Content-Type: application/json
+X-Robots-Tag: noindex
+
+[{"id":1,"name":"Alice Martin","email":"alice@example.com"},{"id":2,"name":"Bob Kamga","email":"bob@example.com"},{"id":3,"name":"Chris Nguema","email":"chris@example.com"}]
+```
+
+### 5. Method restriction (`curl -si -X POST http://localhost:8001/api/users | head -12`, and the removed generated route)
+
+```
+HTTP/1.1 405 Method Not Allowed
+Host: localhost:8001
+Connection: close
+X-Powered-By: PHP/8.3.36
+Content-Type: text/html; charset=UTF-8
+X-Debug-Exception: No%20route%20found%20for%20%22POST%20http%3A%2F%2Flocalhost%3A8001%2Fapi%2Fusers%22%3A%20Method%20Not%20Allowed%20%28Allow%3A%20GET%29
+Allow: GET
+Cache-Control: no-cache, private
+Date: Mon, 02 Nov 2026 10:27:32 GMT
+X-Robots-Tag: noindex
+
+$ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8001/user
+404
+```
+
+### 6. Detail route and errors (port 8002)
+
+```
+$ curl -si http://localhost:8002/api/users | head -9
+HTTP/1.1 200 OK
+Host: localhost:8002
+Connection: close
+X-Powered-By: PHP/8.3.36
+Cache-Control: no-cache, private
+Date: Tue, 03 Nov 2026 15:20:18 GMT
+Content-Type: application/json
+X-Robots-Tag: noindex
+
+$ curl -si http://localhost:8002/api/users/2 | tail -1
+{"id":2,"name":"Bob Kamga","email":"bob@example.com"}
+
+$ curl -si http://localhost:8002/api/users/999 | grep -E "^HTTP|error"
+HTTP/1.1 404 Not Found
+{"error":"User not found"}
+
+$ curl -s -o /dev/null -w "%{http_code} %{content_type}\n" http://localhost:8002/api/users/abc
+404 text/html; charset=UTF-8
+
+$ curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:8002/api/users/2
+405
+```
+
+### 7. Search (port 8002)
+
+```
+$ curl -s "http://localhost:8002/api/users?search=ali"
+[{"id":1,"name":"Alice Martin","email":"alice@example.com"}]
+$ curl -s "http://localhost:8002/api/users?search=ALI"
+[{"id":1,"name":"Alice Martin","email":"alice@example.com"}]
+$ curl -s "http://localhost:8002/api/users?search=zzz"
+[]
+$ curl -s "http://localhost:8002/api/users?search=bob"
+[{"id":2,"name":"Bob Kamga","email":"bob@example.com"}]
+$ curl -s "http://localhost:8002/api/users" | head -c 60
+[{"id":1,"name":"Alice Martin","email":"alice@example.com"},
+```
+
+### 8. Composer failure and its cause
+
+```
+$ composer create-project symfony/skeleton:"7.4.*" symfony-routing-controllers --no-audit
+In Auditor.php line 172:
+  [Error]
+  Call to undefined function Composer\Advisory\array_all()
+
+$ php -r 'var_dump(PHP_VERSION, function_exists("array_all"));'
+string(6) "8.3.36"
+bool(false)
+```
+
+After installing the official Composer phar (`Composer version 2.11.1`), the same command completed and `ls bin public` showed `console` and `index.php`.
+
+### 9. Git history and repository layout
+
+```
+ede4f77 feat: add search filter to GET /api/users via Request query Refs:#09
+823c626 feat: add GET /api/users/{id} route with requirements and JSON 404 Refs:#09
+ee530bb feat: add GET /api/users/{id} route with requirements and JSON 404 Refs:#09
+d9f76ea feat: add GET /api/users list route Refs:#09
+52d1da5 feat: generate UserController with maker bundle Refs:#09
+3d4fb34 chore: install Symfony 7.4 skeleton Refs:#09
+
+[main 9807208] refactor: move Symfony project into TICKET-09-symfony/symfony-routing-controllers Refs:#09
+ 20 files changed, 0 insertions(+), 0 deletions(-)
+   ede4f77..9807208  main -> main
+   ede4f77..9807208  main -> Backend
+
+$ git status -sb
+## main...origin/Backend
+
+$ git ls-tree --name-only origin/main
+README.md
+TICKET-02-recipe-book
+TICKET-03-expense-tracker
+TICKET-04-nuxt-fundamentals
+TICKET-05-loan-simulator
+TICKET-06-pinia-fundamentals
+TICKET-07-testing-and-quality
+TICKET-08-php8-fundamentals
+TICKET-09-symfony
+Vue-fundametals
+```
 
 ## Open Items
 
