@@ -5,7 +5,7 @@
 
 ## Planned Approach
 
-1. **Types first** - define the `Recipe` interface matching the ticket's data model (`id`, `name`, `ingredients`, `isVegetarian`, optional `createdAt`), plus a `SortBy` union type (`"name" | "createdAt" | "vegetarian"`), `Omit<Recipe, "id">` for new-recipe form input, and `Record<number, Recipe>` for the mock initial dataset.
+1. **Types first** - define the `Recipe` interface matching the ticket's data model (`id`, `name`, `ingredients`, `isVegetarian`, optional `createdAt`), plus a `SortBy` union type (`"name" | "createdAt" | "vegetarian"`), `Omit<Recipe, "id">` for new-recipe form input, and `Recipe[]` for the mock initial dataset.
 2. **Reactive state inline, in the top-level component first** - build `status` (loading/success/error), `recipes`, `sortBy`, and the `sortedRecipes`/`vegetarianCount`/`totalCount` computed values directly in a working prototype, alongside a simulated `onMounted` data load. Use Composition API primitives (`ref`, `reactive`, `computed`, `onMounted`) so the prototype directly maps to the eventual implementation.
 3. **Component split**, per the ticket's required architecture:
    - `RecipeList.vue` - renders the sorted list, receives recipes via props, delegates each row to `RecipeItem`

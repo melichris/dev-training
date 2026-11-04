@@ -11,7 +11,7 @@ Implemented a client-side recipe management application module in Vue 3 and Type
 ## 2. How It Was Done
 
 - **Component Design:** Built an isolated form capture template and a grid-based display system using Vue's Composition API (`<script setup>`).
-- **State Management:** Utilized local reactive primitives to synchronize form inputs, processing status, error flags, and the source recipe dictionary.
+- **State Management:** Utilized local reactive primitives to synchronize form inputs, processing status, error flags, and the recipe list.
 - **Compilation Safeguards:** Unified workspace modules using specific build references to enforce a secure compilation loop.
 
 ---
@@ -23,6 +23,7 @@ Implemented a client-side recipe management application module in Vue 3 and Type
 | **Parsing Inputs Before Array Length Validation**     | Isolates alphanumeric elements from input strings before evaluation. This completely blocks whitespace-and-comma variations (like `, ,`) from generating blank entries in data storage. | Validating raw input strings directly with `.trim()`, which incorrectly permitted submissions containing unvetted punctuation arrays. |
 | **Executing Type Validation via Build Layouts**       | Utilizing `vue-tsc --build` forces the compiler to process project references recursively, ensuring full inspection of decoupled configurations.                                        | Running basic standalone ` vue-tsc --build`, which bypassed component evaluation due to an empty files matrix in the workspace root.  |
 | **Implementing Hardcoded Time Offsets for Mock Data** | Applying distinct, calculated negative offsets (`ONE_DAY`, `TWO_DAYS`, etc.) and scrambled naming keys provides an observable timeline grid.                                            | Generating seeds with inline `Date.now()` calls, which assigned identical millisecond seeds and hid list-sorting regressions.         |
+| **Using an Array for Mock Recipes**                   | Defining mock recipes as `Recipe[]` lets the composable copy the fixture directly without converting an object with `Object.values()`.                                                | `Record<number, Recipe>` followed by `Object.values()`, which adds an unnecessary conversion.                                         |
 
 ---
 
