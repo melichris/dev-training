@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, provide } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import type { Expense, NewExpense, Category, Status } from '@/types/types'
 import { mockExpenses } from '@/data/mockExpenses'
 
@@ -44,7 +44,6 @@ export function useExpenses() {
       target.paid = !target.paid
     }
   }
-  provide('currencySymbol', '$')
   return {
     status,
     expenses,

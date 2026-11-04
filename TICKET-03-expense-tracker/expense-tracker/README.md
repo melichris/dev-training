@@ -11,6 +11,7 @@ A small Vue 3 + TypeScript expense dashboard built to practice component composi
 - Loading and success/error state handling while mock data is fetched
 - Expense summary cards for total spend and unpaid bill count
 - Category filter buttons for `all`, `food`, `transport`, `bills`, `wife`, and `others`
+- Summary cards reflect all expenses; category filters affect the displayed list only
 - Add-expense form with validation for required description and positive amount values
 - Toggle paid/unpaid state for each expense row
 - Centralized composable logic for state management and derived values

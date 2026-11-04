@@ -36,7 +36,7 @@
       </button>
       <button
         :class="{ active: activeCategory === 'wife' }"
-        :aria-pressed="activeCategory === 'bills'"
+        :aria-pressed="activeCategory === 'wife'"
         @click="activeCategory = 'wife'"
       >
         Wife
@@ -61,7 +61,9 @@ import TotalsDisplay from './TotalsDisplay.vue'
 import ExpenseForm from './ExpenseForm.vue'
 import ExpenseList from './ExpenseList.vue'
 import { useExpenses } from '@/composables/useExpenses'
+import { provide } from 'vue'
 
+provide('currencySymbol', '$')
 const {
   status,
   activeCategory,
