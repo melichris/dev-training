@@ -6,11 +6,19 @@ interface Post {
 }
 
 const route = useRoute()
-const postsId = route.params.id
+const postId = computed(() => route.params.id)
 
-const { data: post, status, error } = await useFetch<Post>(`/api/post/${postsId}`, {
+const { data: post, status, error } = await useFetch<Post>(() => `/api/post/${postId.value}`, {
   lazy: true,
 })
+
+if (import.meta.server && error.value) {
+  throw createError({
+    statusCode: error.value.statusCode ?? 500,
+    statusMessage: error.value.statusMessage ?? 'Unable to load post',
+    fatal: true,
+  })
+}
 </script>
 
 <template>

@@ -24,6 +24,8 @@ This project was originally scoped around Nuxt 3, per the initial learning roadm
 - Alternative per-page layout via `definePageMeta` (`minimal` layout)
 - Data fetching using `useFetch` and `useAsyncData` patterns
 - Loading, error, and not-found handling for route-driven content
+- Shared mock data for both post and product list/detail APIs
+- HTTP 400 for invalid IDs and HTTP 404 for missing post or product records/pages
 - Route parameter validation and page-specific rendering decisions
 - SSR / SSG / CSR concepts with route-level rendering control
 
@@ -54,10 +56,16 @@ nuxt-fundamentals/
 │   │   └── minimal.vue
 │   └── app.vue
 ├── server/
-│   └── api/
+│   ├── api/
+│   │   ├── post/
+│   │   │   ├── index.ts
+│   │   │   └── [id].ts
+│   │   └── products/
+│   │       ├── index.ts
+│   │       └── [id].ts
+│   └── utils/
 │       ├── posts.ts
-│       └── posts/
-│           └── [id].ts
+│       └── products.ts
 ├── docs/
 │   ├── nuxt-routing.md
 │   ├── nuxt-layouts.md
@@ -77,9 +85,11 @@ npm run dev
 
 Visit `http://localhost:3000` and navigate via the links, or try the API routes directly:
 
-- `http://localhost:3000/api/posts`
-- `http://localhost:3000/api/posts/1`
-- `http://localhost:3000/api/posts/999` (demonstrates the not-found path)
+- `http://localhost:3000/api/post`
+- `http://localhost:3000/api/post/1`
+- `http://localhost:3000/api/post/999` (demonstrates the not-found path)
+- `http://localhost:3000/api/products`
+- `http://localhost:3000/api/products/999` (demonstrates the not-found path)
 
 ## Out of Scope
 

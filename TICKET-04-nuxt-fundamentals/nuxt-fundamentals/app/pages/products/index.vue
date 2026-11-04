@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 interface Product {
   id: number
   title: string
@@ -8,22 +7,23 @@ interface Product {
   thumbnail: string
 }
 
-const { data: prodList, error } = await useFetch<Product[]>(`/api/products/`);
+const { data: prodList, status, error } = await useFetch<Product[]>('/api/products', {
+  lazy: true,
+})
 </script>
 <template>
   <div>
-    <div v-if="error">Failed to load product.{{ error.message }}</div>
-    <div v-else-if="!prodList">Loading product...</div>
+    <div v-if="status === 'pending'">Loading products...</div>
+    <div v-else-if="error">Failed to load products. {{ error.message }}</div>
     <div v-else>
-      <div v-for="product in prodList" :key="product.id">
-        <ul>
-          <li>
-            <NuxtLink :to="`/products/${product.id}`">
-              Product Title: {{ product.title }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
+      <p v-if="!prodList?.length">No products found.</p>
+      <ul v-else>
+        <li v-for="product in prodList" :key="product.id">
+          <NuxtLink :to="`/products/${product.id}`">
+            Product Title: {{ product.title }}
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

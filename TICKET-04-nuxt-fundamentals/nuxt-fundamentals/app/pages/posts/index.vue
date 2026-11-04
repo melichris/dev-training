@@ -4,7 +4,9 @@ interface Post {
   title: string
   body: string
 }
-const { data: posts, status, error } = await useFetch<Post[]>('/api/post')
+const { data: posts, status, error } = await useFetch<Post[]>('/api/post', {
+  lazy: true,
+})
 </script>
 
 <template>

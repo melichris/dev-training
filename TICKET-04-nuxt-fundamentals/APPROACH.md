@@ -11,9 +11,9 @@
 
 3. **Layouts** — implement a default layout (`layouts/default.vue`) with shared navigation, and a second minimal layout (`layouts/minimal.vue`) with none, applying the alternate layout to a specific page via `definePageMeta` to demonstrate per-page layout overrides.
 
-4. **Server API routes as a mock backend** — build `server/api/posts/index.ts` (list endpoint) and `server/api/posts/[id].ts` (single-item endpoint, using `getRouterParam` to resolve the dynamic id), with a single centralized mock dataset shared between both routes rather than duplicated, reflecting how a real backend would source data from one place.
+4. **Server API routes as a mock backend** — use the existing post routes `server/api/post/index.ts` and `server/api/post/[id].ts` (the public paths are `/api/post` and `/api/post/:id`) with their shared dataset in `server/utils/posts.ts`. The supplementary product routes use `/api/products` and `/api/products/:id`, with their shared dataset in `server/utils/products.ts`. Detail routes validate IDs and return 400 for invalid IDs and 404 for missing records.
 
-5. **Data fetching with `useFetch`** — fetch the list on `pages/posts/index.vue` and the individual item on `pages/posts/[id].vue`, with explicit `status`/`error` handling in both, including a genuine not-found path (`createError` server-side, consumed via the `error` ref client-side) rather than assuming the happy path is sufficient.
+5. **Data fetching with `useFetch`** — fetch lists and detail records with `lazy: true` so pending states can render during navigation. Handle errors explicitly; on server rendering, propagate a failed detail fetch with `createError` so missing post and product pages return HTTP 404 rather than a successful page containing an error message.
 
 6. **Verify before moving on, at every stage** — each concept (routing, then layouts, then fetching) tested manually in the browser, including explicit negative-path testing (e.g. `/posts/999`), before being considered complete.
 
@@ -24,7 +24,7 @@ Routing has to exist before layouts can wrap it, and layouts have to be stable b
 ## Risks Carried Over From the Ticket
 
 - **Version risk:** building on an end-of-life Nuxt version without noticing — mitigated by explicit version verification before implementation began.
-- **Data duplication risk:** avoided by centralizing mock data in one location, shared by both server routes, rather than repeating it.
+- **Data duplication risk:** keep each resource's mock dataset in one server utility shared by its list and detail routes.
 
 ## Open Question / Risk
 

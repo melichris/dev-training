@@ -20,7 +20,7 @@ This ticket is written retroactively, documenting work completed before formaliz
 
 **Static & Nested Routing**
 
-**Note:** _*everything about products is a similar implementation like the post was just practicing more so you wont find any documentation for the products*_
+Products are included as a second practice flow using the same API, loading, error, and not-found patterns as posts.
 
 - Home page (`/index`)
 - About page (`/about`)
@@ -37,9 +37,10 @@ This ticket is written retroactively, documenting work completed before formaliz
 
 **Data Fetching**
 
-- Mock backend implemented using Nuxt server API routes (`server/api/posts.ts`, `server/api/posts/[id].ts`)
-- Post list fetched via `useFetch('/api/posts')`
-- Individual post fetched via `useFetch('/api/posts/:id')`, using `getRouterParam` server-side to resolve the dynamic id
+- Post API routes are `server/api/post/index.ts` (`GET /api/post`) and `server/api/post/[id].ts` (`GET /api/post/:id`); both use the shared dataset in `server/utils/posts.ts`
+- Product API routes are `server/api/products/index.ts` (`GET /api/products`) and `server/api/products/[id].ts` (`GET /api/products/:id`); both use the shared dataset in `server/utils/products.ts`
+- Post and product pages fetch from their corresponding singular/plural API paths using `useFetch`
+- Invalid resource IDs return HTTP 400; valid but unknown IDs return HTTP 404
 
 ### Technical Requirements
 
@@ -67,13 +68,15 @@ This ticket is written retroactively, documenting work completed before formaliz
 - [x] Individual post page fetches and displays real data based on the dynamic route id
 - [x] Loading state is shown while data is in flight
 - [x] Error/not-found state is shown when a post id does not exist (verified via `/posts/999`)
+- [x] API list and detail routes use the actual `/api/post` and `/api/products` paths and return appropriate statuses for valid, invalid, and missing IDs
+- [x] Product list and detail routes share one mock dataset and show loading/error states
 
 ## Risks & Open Points
 
 - **Risk:** Building on the end-of-life Nuxt 3 without noticing, leading to wasted work on an unsupported version.
   → **Mitigation:** Version explicitly checked (`npm list nuxt` / `package.json`) and confirmed as Nuxt 4 before proceeding.
-- **Risk:** Silent duplication of mock data across two server route files (`posts.ts` and `posts/[id].ts`).
-  → **Mitigation:** Acceptable shortcut for a training exercise; flagged explicitly as not a pattern to repeat in production, where this would come from a shared data source or real database.
+- **Risk:** Duplicating mock data between list and detail API handlers.
+  → **Mitigation:** Keep the post and product datasets in `server/utils/posts.ts` and `server/utils/products.ts`, respectively, and import each shared dataset from both handlers.
 - **Open Point:** SSR vs SSG behavior and when to choose each — not yet covered, planned as a follow-up session.
 
 ## Definition of Done
