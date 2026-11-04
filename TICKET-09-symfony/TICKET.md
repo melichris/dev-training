@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Backend, Symfony 7.4 LTS
 **Project:** `symfony-routing-controllers` (new Symfony skeleton)
-**Status:** Not Started
+**Status:** Awaiting QA review
 
 ## Description
 
