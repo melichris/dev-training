@@ -20,6 +20,7 @@
 - Added `GET /api/users/{id}` (`api_users_show`) with `requirements: ['id' => '\d+']` and a JSON 404 for unknown ids
 - Added a case-insensitive `?search=` filter using the `Request` query bag, reindexed with `array_values`
 - Every route has a name and an explicit `methods` list
+- Added focused learning summaries for Symfony setup, routing, and controllers under `docs/`, plus a completed implementation approach
 
 ## Verified Endpoints
 
@@ -84,8 +85,16 @@
 |---|---|
 | All endpoints verified with curl | Done |
 | Technical decisions documented | Done |
-| Committed with `Refs:#09` | Done: `3d4fb34`, `52d1da5`, `d9f76ea`, `ee530bb`, `823c626`, `ede4f77`, plus the ticket-status commit and the folder move `9807208` |
+| Core implementation committed with `Refs:#09` | Done: `3d4fb34`, `52d1da5`, `d9f76ea`, `ee530bb`, `823c626`, `ede4f77`, plus the ticket-status commit and the folder move `9807208` |
 | Screenshots | Not captured; the terminal output is included as text under Evidence |
+
+## Documentation Review Addendum (2026-11-05)
+
+- Populated `docs/Symfony-setup.md`, `docs/Symfony-routing.md`, and `docs/Symfony-controllers.md` with summaries aligned to the checked-in Symfony project.
+- Filled `APPROACH.md` with the implementation steps, design choices, verification commands, and scope boundaries.
+- Rechecked `php bin/console about`, `php bin/console debug:router`, PHP syntax for `UserController.php`, and `composer validate --no-check-publish`.
+- Started the local PHP server and verified list, filtered list, detail, unknown numeric ID, invalid nonnumeric ID, and unsupported-method responses with `curl`. The numeric unknown ID returns the documented JSON 404; the nonnumeric path is rejected by routing with Symfony's normal 404 response.
+- `git diff --check` passes. These documentation and ticket/report updates are not yet committed; the Definition of Done commit item remains open until they are committed with `Refs:#09`.
 
 ## Evidence (terminal output)
 

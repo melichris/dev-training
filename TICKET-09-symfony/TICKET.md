@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Backend, Symfony 7.4 LTS
 **Project:** `symfony-routing-controllers` (new Symfony skeleton)
-**Status:** Awaiting QA review
+**Status:** Implementation and learning summaries verified; documentation updates uncommitted; awaiting QA review
 
 ## Description
 
@@ -11,15 +11,15 @@ Build a small read-only JSON users API in Symfony to learn routing, controllers,
 
 ## Acceptance Criteria
 
-- [ ] Symfony 7.4 skeleton installed and served locally
-- [ ] `GET /api/users` returns a JSON list of users
-- [ ] `GET /api/users/{id}` returns one user as JSON
-- [ ] `{id}` is restricted with `requirements: ['id' => '\d+']`
-- [ ] Unknown id returns HTTP 404 with a JSON error body
-- [ ] `GET /api/users?search=...` filters the list through the `Request` object, and the result is a JSON list (not an object)
-- [ ] Every route has a name and an explicit `methods` list
-- [ ] `php bin/console debug:router` output captured as evidence
-- [ ] Each endpoint verified with curl (including `/api/users/abc` and `/api/users/999`)
+- [x] Symfony 7.4 skeleton installed and served locally
+- [x] `GET /api/users` returns a JSON list of users
+- [x] `GET /api/users/{id}` returns one user as JSON
+- [x] `{id}` is restricted with `requirements: ['id' => '\d+']`
+- [x] Unknown id returns HTTP 404 with a JSON error body
+- [x] `GET /api/users?search=...` filters the list through the `Request` object, and the result is a JSON list (not an object)
+- [x] Every application route has a name and an explicit `methods` list
+- [x] `php bin/console debug:router` output captured as evidence
+- [x] Each endpoint verified with curl (including `/api/users/abc` and `/api/users/999`)
 
 ## Out of Scope
 
@@ -30,6 +30,6 @@ Build a small read-only JSON users API in Symfony to learn routing, controllers,
 
 ## Definition of Done
 
-- [ ] All endpoints verified with curl
-- [ ] Technical decisions documented
-- [ ] Committed (with `Refs:#09` in commit messages)
+- [x] All endpoints verified with curl
+- [x] Technical decisions documented
+- [ ] Follow-up documentation changes committed (use `Refs:#09` in the commit message)
