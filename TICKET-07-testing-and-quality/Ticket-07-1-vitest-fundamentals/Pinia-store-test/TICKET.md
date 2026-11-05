@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — Pinia / Vitest / Mocking
 **Project:** `nuxt-vitest-fundamentals` (continuation)
-**Status:** Not Started
+**Status:** Implementation and tests verified locally on 2026-11-05; reviewer sign-off pending
 
 ## Description
 
@@ -11,17 +11,16 @@ Build competency in testing Pinia stores in isolation — testing state, getters
 
 ## Acceptance Criteria
 
-- [ ] Pinia store tested with `setActivePinia(createPinia())` isolation
-- [ ] State and getters asserted directly
-- [ ] Action that mutates state tested
-- [ ] Action that calls `$fetch` tested with `vi.mock()`
-- [ ] Mock resolves successfully — assert state updated correctly
-- [ ] Mock rejects — assert error state handled correctly
-- [ ] All tests pass with zero failures
+- [x] Pinia store tested with `setActivePinia(createPinia())` isolation
+- [x] State and getters asserted directly
+- [x] Action that mutates state tested
+- [x] Action that calls `$fetch` tested with `vi.mock()`
+- [x] Mock resolves successfully — assert state updated correctly
+- [x] Mock rejects — assert error state handled correctly
 
 ## Definition of Done
 
-- [ ] All tests passing
-- [ ] `npm test` output captured
-- [ ] Technical decisions documented
-- [ ] Committed
+- [x] All tests passing
+- [x] `npm test` output captured in the report and current verification addendum
+- [x] Technical decisions documented
+- [ ] Code committed — remediation changes remain uncommitted

@@ -10,16 +10,25 @@ export const usePostsStore = defineStore("posts", {
   actions: {
     async fetchPosts() {
       this.status = "loading";
+      this.error = null;
       const { $fetch } = useApi();
-      const result =
-        await $fetch<{ id: number; title: string }[]>("/api/posts");
-      if (result.error) {
+      try {
+        const result =
+          await $fetch<{ id: number; title: string }[]>("/api/posts");
+        if (result.error) {
+          throw new Error(result.error);
+        }
+        if (result.data === null) {
+          throw new Error("Request returned no posts.");
+        }
+
+        this.posts = result.data;
+        this.status = "success";
+      } catch (error) {
         this.status = "error";
-        this.error = result.error;
-        return;
+        this.error =
+          error instanceof Error ? error.message : "Request failed";
       }
-      this.posts = result.data!;
-      this.status = "success";
     },
   },
 });

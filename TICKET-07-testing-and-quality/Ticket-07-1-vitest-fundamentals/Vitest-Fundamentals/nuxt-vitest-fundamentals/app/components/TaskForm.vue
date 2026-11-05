@@ -33,6 +33,6 @@ const handleSubmit = () => {
     <p v-if="errors.title">{{ errors.title }}</p>
     <label for="description">Description</label>
     <input id="description" v-model="form.description" placeholder="Description (optional)" />
-    <button type="submit">{{ $props }}</button>
+    <button type="submit">Create task</button>
   </form>
 </template>

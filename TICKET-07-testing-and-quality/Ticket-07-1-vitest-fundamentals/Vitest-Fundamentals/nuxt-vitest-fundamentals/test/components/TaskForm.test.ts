@@ -8,7 +8,7 @@ describe("TaskForm", () => {
     expect(wrapper.find("form").exists()).toBe(true);
     expect(wrapper.find("input#title").exists()).toBe(true);
     expect(wrapper.find("input#description").exists()).toBe(true);
-    expect(wrapper.find("button[type='submit']").exists()).toBe(true);
+    expect(wrapper.get("button[type='submit']").text()).toBe("Create task");
   });
   it("shows validation error when title is less than 3 characters", async () => {
     const wrapper = mount(TaskForm);

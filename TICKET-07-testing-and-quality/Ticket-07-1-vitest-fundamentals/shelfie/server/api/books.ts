@@ -1,4 +1,5 @@
 import type { Book, NewBook, BookUpdate } from '~/types/book'
+import { createError, defineEventHandler, getQuery, readBody } from 'h3'
 
 let books: Book[] = [
   {
@@ -26,16 +27,19 @@ let books: Book[] = [
 ]
 
 export default defineEventHandler(async (event) => {
-  const { query } = getQuery(event)
-  const id = query as string
+  const requestedId = getQuery(event).id
+  const id = typeof requestedId === 'string' ? requestedId : undefined
 
   // GET all or single
-  if (event.node.req.method === 'GET') {
-    return id ? books.find(b => b.id === id) : books
+  if (event.method === 'GET') {
+    if (!id) return books
+    const book = books.find((item) => item.id === id)
+    if (!book) throw createError({ statusCode: 404, statusMessage: 'Not found' })
+    return book
   }
 
   // POST create
-  if (event.node.req.method === 'POST') {
+  if (event.method === 'POST') {
     const body = await readBody<NewBook>(event)
     if (!body.title || !body.author) {
       throw createError({ statusCode: 400, statusMessage: 'Title and author required' })
@@ -46,17 +50,24 @@ export default defineEventHandler(async (event) => {
   }
 
   // PUT update
-  if (event.node.req.method === 'PUT') {
+  if (event.method === 'PUT') {
+    if (!id) throw createError({ statusCode: 400, statusMessage: 'Book id required' })
     const body = await readBody<BookUpdate>(event)
     const idx = books.findIndex(b => b.id === id)
     if (idx === -1) throw createError({ statusCode: 404, statusMessage: 'Not found' })
-    books[idx] = { ...books[idx], ...body }
-    return books[idx]
+    const existing = books[idx]
+    if (!existing) throw createError({ statusCode: 404, statusMessage: 'Not found' })
+    const updated: Book = { ...existing, ...body, id: existing.id }
+    books[idx] = updated
+    return updated
   }
 
   // DELETE
-  if (event.node.req.method === 'DELETE') {
+  if (event.method === 'DELETE') {
+    if (!id) throw createError({ statusCode: 400, statusMessage: 'Book id required' })
     books = books.filter(b => b.id !== id)
     return { success: true }
   }
+
+  throw createError({ statusCode: 405, statusMessage: 'Method not allowed' })
 })

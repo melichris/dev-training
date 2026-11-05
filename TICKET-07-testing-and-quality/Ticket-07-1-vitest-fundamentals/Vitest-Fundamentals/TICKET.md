@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — Vitest / Vue 3
 **Project:** New dedicated project (`nuxt-vitest-fundamentals`)
-**Status:** Completed
+**Status:** Completed; acceptance criteria verified locally on 2026-11-05
 
 ## Description
 
@@ -55,15 +55,15 @@ All prior tickets were manually tested in the browser. Manual testing doesn't sc
 
 ## Acceptance Criteria
 
-- [ ] Vitest installed and configured, `npm test` runs successfully
-- [ ] At least 3 utility function tests (happy path + edge cases)
-- [ ] Zod schema tests covering valid, invalid, and cross-field cases
-- [ ] Composable tested without mounting a component
-- [ ] All tests pass with zero failures
+- [x] Vitest installed and configured, `npm test` runs successfully
+- [x] At least 3 utility function tests (happy path + edge cases)
+- [x] Zod schema tests covering valid, invalid, and cross-field cases
+- [x] Composable tested without mounting a component
+- [x] All tests pass with zero failures
 
 ## Definition of Done
 
-- [ ] All tests passing
-- [ ] Test output captured (terminal screenshot)
-- [ ] Technical decisions documented
-- [ ] Code committed
+- [x] All tests passing
+- [x] Test output captured (terminal screenshot and current verification report)
+- [x] Technical decisions documented
+- [ ] Code committed — remediation changes remain uncommitted

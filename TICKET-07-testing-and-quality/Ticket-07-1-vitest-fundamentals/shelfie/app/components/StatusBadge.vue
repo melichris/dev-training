@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Book } from '~~/types/book'
+import type { Book } from '~/types/book'
 
 const props = defineProps<{
   status: Book['status']
@@ -11,7 +11,13 @@ const statusMap: Record<Book['status'], { label: string; color: string }> = {
   finished: { label: 'Finished', color: 'bg-green-200 text-green-700' },
 }
 
-const badge = computed(() => statusMap[props.status])
+const badge = computed(() => {
+  const value = statusMap[props.status]
+  if (!value) {
+    throw new RangeError(`Unsupported book status: ${props.status}`)
+  }
+  return value
+})
 </script>
 
 <template>

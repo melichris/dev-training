@@ -1,5 +1,5 @@
 // app/composables/useLocalDraft.ts
-import type { NewBook } from "~~/types/book";
+import type { NewBook } from "~/types/book";
 
 const DRAFT_KEY = "shelfie:draft";
 

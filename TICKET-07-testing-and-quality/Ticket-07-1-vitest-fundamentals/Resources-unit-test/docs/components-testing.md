@@ -6,7 +6,10 @@ Component testing means testing a UI component the same way a user would interac
 
 This is especially useful in Vue apps, where user interfaces often involve props, events, conditional rendering, and DOM updates.
 
+For Vue Testing Library, install `@testing-library/vue` and use a DOM test environment such as `jsdom` (introduced in the setup guide). These tests simulate browser-like interactions; they do not run in a real browser.
+
 ```ts
+import { it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/vue";
 import Counter from "./Counter.vue";
 
@@ -74,7 +77,9 @@ As projects grow, component tests often cover more advanced cases such as:
 Example with emitted events:
 
 ```ts
+import { it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
+import FormComponent from "./FormComponent.vue";
 
 it("emits submit when form is valid", async () => {
   const wrapper = mount(FormComponent);

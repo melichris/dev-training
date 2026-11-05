@@ -1,20 +1,17 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import type { Book } from '~/types/book'
 
 const store = useBookStore()
-const { books, loading, error, addBook, updateBook, removeBook } = store
+const { books, loading, error } = storeToRefs(store)
+const { addBook, updateBook, removeBook } = store
 
-// Fetch on mount instead of useFetch
-onMounted(async () => {
-  if (books.length === 0) {
-    await store.fetchBooks()
-  }
-})
+await callOnce('books', () => store.fetchBooks())
 
 const search = ref('')
 
 const filteredBooks = computed(() =>
-  books.filter(b =>
+  books.value.filter(b =>
     b.title.toLowerCase().includes(search.value.toLowerCase()) ||
     b.author.toLowerCase().includes(search.value.toLowerCase())
   )

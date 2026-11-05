@@ -36,11 +36,12 @@ This makes failing tests much easier to understand because they are organized by
 
 ## What are test files and what patterns do we use?
 
-Vitest looks for files matching common test patterns such as:
+Vitest's default file patterns include `.test` and `.spec` files. They can be placed in a `__tests__` directory as long as their names still match those patterns:
 
 - `*.test.ts`
 - `*.spec.ts`
-- `__tests__/*`
+- `__tests__/
+  math.test.ts`
 
 A typical structure is:
 
@@ -52,7 +53,7 @@ src/
     Button.spec.ts
 ```
 
-The file name matters because Vitest uses it to decide what should be executed.
+The file name matters because Vitest uses it to decide what should be executed; a directory named `__tests__` alone does not make arbitrary files run.
 
 ## Testing with TypeScript
 

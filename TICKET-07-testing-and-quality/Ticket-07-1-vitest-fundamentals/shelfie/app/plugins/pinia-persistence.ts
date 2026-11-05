@@ -1,7 +1,7 @@
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 export default defineNuxtPlugin(({ $pinia }) => {
-  if (process.client) {
+  if (import.meta.client) {
     $pinia.use(piniaPluginPersistedstate)
   }
 })

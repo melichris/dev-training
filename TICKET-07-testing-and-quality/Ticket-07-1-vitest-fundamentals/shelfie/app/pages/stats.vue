@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const store = useBookStore()
+
+await callOnce('books', () => store.fetchBooks())
+
 const { totalBooks, finishedBooks, readingBooks, unreadBooks, avgRating, readingProgress } = useReadingStats()
 </script>
 

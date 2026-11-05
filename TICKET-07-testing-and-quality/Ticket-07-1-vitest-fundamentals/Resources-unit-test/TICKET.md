@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Frontend — Testing / Vitest
 **Project:** `Ticket-07-1-vitest-fundamentals`
-**Status:** Awaiting QA-review
+**Status:** Documentation complete; reviewer sign-off pending
 
 ## Description
 
@@ -117,13 +117,13 @@ Without this foundation, a developer may struggle to:
 
 ## Acceptance Criteria
 
-- [ ] Vitest fundamentals are explained clearly, including installation, setup, and execution
-- [ ] A basic test file structure is documented with working examples
-- [ ] Configuration, REST parameters, parameterized tests, and global imports are covered
-- [ ] Test grouping, file patterns, TypeScript support, and output reading are included
-- [ ] Component testing is explained using practical UI behavior examples
-- [ ] Type testing and TypeScript error reading are covered, along with type-checking commands
-- [ ] The final notes are brief, structured, and readable for learning purposes
+- [x] Vitest fundamentals are explained clearly, including installation, setup, and execution
+- [x] A basic test file structure is documented with working examples
+- [x] Configuration, REST parameters, parameterized tests, and global imports are covered
+- [x] Test grouping, file patterns, TypeScript support, and output reading are included
+- [x] Component testing is explained using practical UI behavior examples
+- [x] Type testing and TypeScript error reading are covered, along with type-checking commands
+- [x] The final notes are brief, structured, and readable for learning purposes
 
 ## Risks & Open Points
 
@@ -135,8 +135,8 @@ Without this foundation, a developer may struggle to:
 
 ## Definition of Done
 
-- [ ] Documentation for all requested Vitest fundamentals topics is completed
-- [ ] Examples are included where they help explain the concept
-- [ ] Files are populated and ready for review
-- [ ] Ticket and approach documents align with the actual work completed
-- [ ] Reviewer can understand the topic quickly without needing prior testing experience
+- [x] Documentation for all requested Vitest fundamentals topics is completed
+- [x] Examples are included where they help explain the concept
+- [x] Files are populated and ready for review
+- [x] Ticket and approach documents align with the actual work completed
+- [x] Reviewer can understand the topic quickly without needing prior testing experience

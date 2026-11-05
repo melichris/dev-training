@@ -18,10 +18,10 @@ describe("sum", () => {
 
 ## Installation
 
-Install Vitest as a dev dependency in your project:
+Install Vitest and a browser-like test environment as dev dependencies:
 
 ```bash
-npm install -D vitest
+npm install -D vitest jsdom
 ```
 
 If you are using a Vite app, this is usually enough to start writing tests. You can also add a script in your package.json:
@@ -62,17 +62,17 @@ Run the full test suite:
 npx vitest run
 ```
 
-Run in watch mode while developing:
+Run in watch mode while developing (in an interactive terminal):
 
 ```bash
 npx vitest
 ```
 
-This is useful because as you edit files, Vitest can rerun tests automatically.
+This is useful because Vitest can rerun affected tests as you edit files. Use `npx vitest run` for a one-time run, such as in CI.
 
 ## How to configure Vitest
 
-Vitest can be configured in `vitest.config.ts` or inside your Vite config. Typical configuration includes test environment, globals, and coverage settings.
+Vitest can be configured in `vitest.config.ts` or inside your Vite config. The `jsdom` environment shown here must be installed as a dev dependency. Typical configuration includes test environment, globals, and coverage settings.
 
 ```ts
 import { defineConfig } from "vitest/config";

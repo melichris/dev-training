@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
     "nuxt": "^4.6.0",
@@ -21,6 +22,7 @@
     "@nuxt/test-utils": "^4.3.3",
     "@vue/test-utils": "^2.5.1",
     "happy-dom": "^20.14.6",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.3",
+    "vue-tsc": "^3.3.14"
   }
 }

@@ -90,6 +90,12 @@ Then open:
 npm run build
 ```
 
+## Type Checking
+
+```bash
+npm run typecheck
+```
+
 ## Out of Scope
 
 - Real database integration or authentication

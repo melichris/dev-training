@@ -55,7 +55,7 @@ Cover type-aware testing, how to read TypeScript errors, and how to run project 
 
 ## Definition of Done
 
-- [ ] All required Vitest fundamentals topics are mapped to a doc section
-- [ ] Each section includes clear explanations and useful examples
-- [ ] The content is short, readable, and review-friendly
-- [ ] The approach matches the ticket scope and the actual completed work
+- [x] All required Vitest fundamentals topics are mapped to a doc section
+- [x] Each section includes clear explanations and useful examples
+- [x] The content is short, readable, and review-friendly
+- [x] The approach matches the ticket scope and the actual completed work

@@ -6,7 +6,7 @@ export function useBookApi() {
   }
 
   async function getBook(id: string): Promise<Book> {
-    return $fetch(`/api/books?query=${id}`)
+    return $fetch('/api/books', { query: { id } })
   }
 
   async function createBook(book: NewBook): Promise<Book> {

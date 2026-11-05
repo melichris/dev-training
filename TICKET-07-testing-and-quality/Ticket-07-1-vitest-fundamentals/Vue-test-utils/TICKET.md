@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Testing — Vue Test Utils / Vitest
 **Project:** `nuxt-vitest-fundamentals` (continuation)
-**Status:** Awaiting QA review
+**Status:** Implementation and test suite verified locally on 2026-11-05; reviewer sign-off pending
 
 ## Description
 
@@ -38,7 +38,7 @@ Day 1 covered pure unit tests (no DOM, no components). Day 2 moves up the testin
 
 **5. Async testing**
 
-- Use `await nextTick()` or `flushPromises()` after state changes
+- Await Vue Test Utils interactions; use `nextTick`, `flushPromises`, or fake timers as appropriate after state changes
 - Confirm DOM updates are reflected after async operations
 
 **6. Testing a form component**
@@ -50,7 +50,7 @@ Day 1 covered pure unit tests (no DOM, no components). Day 2 moves up the testin
 ### Technical Requirements
 
 - `@vue/test-utils` installed alongside existing Vitest setup
-- Tests in `tests/components/` directory
+- Tests in `test/components/` directory, following the existing project convention
 - `mount` used by default, `shallowMount` only where explicitly justified
 
 ### Out of Scope
@@ -61,17 +61,17 @@ Day 1 covered pure unit tests (no DOM, no components). Day 2 moves up the testin
 
 ## Acceptance Criteria
 
-- [ ] Component mounted and text content asserted
-- [ ] Props tested and confirmed to affect rendered output
-- [ ] Button click simulated and DOM update asserted
-- [ ] Emitted event tested with correct payload
-- [ ] Async update tested with `nextTick` or `flushPromises`
-- [ ] Form component tested: valid submit emits event, invalid submit shows errors
-- [ ] All tests pass with zero failures
+- [x] Component mounted and text content asserted
+- [x] Props tested and confirmed to affect rendered output
+- [x] Button click simulated and DOM update asserted
+- [x] Emitted event tested with correct payload
+- [x] Async update tested with fake timers; `flushPromises()` alone does not advance `setTimeout`
+- [x] Form component tested: valid submit emits event, invalid submit shows errors
+- [x] All tests pass with zero failures in the combined suite
 
 ## Definition of Done
 
-- [ ] All tests passing
-- [ ] `npm test` output captured
-- [ ] Technical decisions documented
-- [ ] Code committed
+- [x] All tests passing in the combined suite
+- [x] `npm test` output captured in the report
+- [x] Technical decisions documented
+- [ ] Code committed — shared remediation changes remain uncommitted

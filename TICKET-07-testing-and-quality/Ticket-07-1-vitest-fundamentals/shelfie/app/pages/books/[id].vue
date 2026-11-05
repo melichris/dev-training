@@ -3,12 +3,12 @@ import type { BookUpdate } from '~/types/book'
 
 const route = useRoute()
 const id = route.params.id as string
-const { getById, updateBook: updateBookStore, removeBook } = useBookStore()
-const book = computed(() => getById(id))
+const store = useBookStore()
+const { getById, updateBook: updateBookStore, removeBook } = store
 
-onMounted(() => {
-  if (book.value) console.log(`Viewing: ${book.value.title}`)
-})
+await callOnce('books', () => store.fetchBooks())
+
+const book = computed(() => getById(id))
 
 const isEditing = ref(false)
 const editForm = reactive<BookUpdate>({
