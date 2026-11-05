@@ -1,48 +1,20 @@
 # Nuxt Loan Affordability Simulator
 
-A Nuxt 4 training project for calculating whether a loan payment fits within a safe affordability threshold based on monthly income. The app focuses on reusable composable logic, input-driven computed validation, and a simple report view that reacts to the user’s financial inputs.
+A Nuxt 4 training project that estimates a fixed-rate loan's monthly payment
+and compares it with a borrower's monthly income. The estimate is not a lender
+approval or creditworthiness decision.
 
-**Ticket:** TICKET-05-loan-simulator
-**Type:** Training / Skill Development
-**Stack:** Nuxt 4, Vue 3, TypeScript
+**Ticket:** [TICKET-05](../TICKET.md)
+**Stack:** Nuxt 4, Vue 3, TypeScript, Vitest
 
 ## Features
 
-- Loan amount input with numeric field and range slider
-- Monthly income input with numeric field and range slider
-- Loan term and interest inputs used in the affordability calculation
-- Standard amortization formula for estimated monthly payment
-- 30% debt-to-income affordability rule
-- Live verdict showing whether the simulated loan is within the safe threshold
-- Reusable composable that centralizes the form state and calculation logic
-
-## Tech & Patterns Demonstrated
-
-- **Nuxt 4 app structure:** `app/app.vue`, `app/components`, and `app/composables`
-- **Composable logic:** `useLoanMath()` stores the state and exposes the calculation function
-- **Reactive form state:** `ref()` values for the loan inputs and computed validity guard
-- **Computed validation:** `isFormValid` only becomes true when all required values are provided
-- **Financial calculation:** standard amortization formula to estimate monthly payment
-- **Decision logic:** affordability checks against a 30% salary threshold
-
-## Project Structure
-
-```text
-my-loan-simulator/
-├── app/
-│   ├── components/
-│   │   ├── LoanForm.vue
-│   │   └── LoanReport.vue
-│   ├── composables/
-│   │   └── useLoanMath.ts
-│   └── app.vue
-├── nuxt.config.ts
-├── package.json
-├── README.md
-├── tsconfig.json
-├── public/
-└── .gitignore
-```
+- Loan principal, annual interest rate, term in months, and monthly income
+  inputs.
+- Fixed-rate amortization calculation, including zero-interest loans.
+- USD payment display to two decimal places.
+- 30% monthly-income affordability indicator.
+- Unit tests for reference cases and invalid calculation inputs.
 
 ## Getting Started
 
@@ -51,23 +23,26 @@ npm install
 npm run dev
 ```
 
-Then open `http://localhost:3000` to use the simulator.
+Open `http://localhost:3000` to use the simulator.
 
-## Type Checking
+## Validation
 
 ```bash
-npx vue-tsc --build
+npm test
+npm run typecheck
+npm run build
 ```
 
-## Out of Scope
+## Calculation Scope
 
-- Real lender APIs or persisted loan data
-- Amortization tables for every month of the repayment schedule
-- Authentication or user accounts
-- Advanced financial modeling beyond the simple affordability check
+The estimate uses the standard fixed-rate amortization formula with an annual
+nominal rate divided by 12. At 0% interest, it divides principal evenly over
+the number of monthly payments. Principal and the displayed payment retain
+cent precision. The application does not calculate an amortization schedule,
+total interest, fees, or lender-specific final installments.
 
 ## Related Documents
 
-- [`../TICKET.md`](../TICKET.md) — project objective, scope, and acceptance criteria
-- [`../APPROACH.md`](../APPROACH.md) — planned implementation and technical decisions
-- [`../REPORT.md`](../REPORT.md) — work completed, evidence, and summary
+- [Ticket and acceptance criteria](../TICKET.md)
+- [Implementation approach](../APPROACH.md)
+- [Verification report](../REPORT.md)

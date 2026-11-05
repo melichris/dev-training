@@ -1,5 +1,8 @@
-<script setup>
+<script setup lang="ts">
 const { hasSubmitted, monthlyPayment, isAffordable } = useLoanMath()
+
+const formatCurrency = (amount: number) =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
 </script>
 
 <template>
@@ -11,7 +14,7 @@ const { hasSubmitted, monthlyPayment, isAffordable } = useLoanMath()
       <div class="text-4xl">📊</div>
       <h3 class="text-lg font-bold text-gray-800">No Simulation Data</h3>
       <p class="text-sm text-gray-500 max-w-xs mx-auto">
-        Adjust the sliders on the left and hit calculate to check your affordability rating.
+        Enter the loan terms and monthly income, then calculate the payment and affordability.
       </p>
     </div>
 
@@ -19,7 +22,7 @@ const { hasSubmitted, monthlyPayment, isAffordable } = useLoanMath()
     <div v-else class="w-full text-center space-y-6">
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Estimated Monthly Payment</h3>
-        <p class="text-5xl font-black text-gray-900 mt-2">${{ monthlyPayment }}</p>
+        <p class="text-5xl font-black text-gray-900 mt-2">{{ formatCurrency(monthlyPayment) }}</p>
       </div>
 
       <!-- Conditional Verdict Banner -->
@@ -27,11 +30,11 @@ const { hasSubmitted, monthlyPayment, isAffordable } = useLoanMath()
         :class="[isAffordable ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800']"
         class="p-4 rounded-xl border text-sm font-medium leading-relaxed">
         <p v-if="isAffordable">
-          🎉 <strong>Approved!</strong> This fits perfectly within the safe 30% debt-to-income threshold framework based
-          on your monthly income.
+          🎉 <strong>Within guideline.</strong> The estimated payment is at or below 30% of your monthly income. This
+          estimate is not a lender approval.
         </p>
         <p v-else>
-          ⚠️ <strong>Over Limit!</strong> This payment exceeds 30% of your total monthly salary. We recommend extending
+          ⚠️ <strong>Above guideline.</strong> This payment exceeds 30% of your monthly income. Consider extending
           your loan term or borrowing less.
         </p>
       </div>

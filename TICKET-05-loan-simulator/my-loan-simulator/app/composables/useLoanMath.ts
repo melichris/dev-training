@@ -1,64 +1,73 @@
-import { ref, computed } from "vue";
+import { computed } from 'vue'
+import { calculateMonthlyPayment } from '~/utils/loanMath'
 
 export const useLoanMath = () => {
-  // 1. Reactive Inputs (State)
-  // We initialize everything as null so inputs show placeholders instead of 0.
-  const loanAmount = ref<number | null>(null);
-  const interestRate = ref<number | null>(null);
-  const loanTermMonths = ref<number | null>(null);
-  const monthlySalary = ref<number | null>(null);
+  const loanAmount = useState<number | null>('loan-amount', () => null)
+  const interestRate = useState<number | null>('loan-interest-rate', () => null)
+  const loanTermMonths = useState<number | null>('loan-term-months', () => null)
+  const monthlySalary = useState<number | null>('loan-monthly-salary', () => null)
+  const hasSubmitted = useState('loan-has-submitted', () => false)
 
-  // 2. Operational State
-  const hasSubmitted = ref(false);
-  const monthlyPayment = ref(0);
-  const isAffordable = ref(false);
-
-  // 3. Form Validation (Computed Property)
-  // This automatically tracks changes. It returns TRUE only if all inputs are filled and greater than 0.
   const isFormValid = computed(() => {
+    const principal = loanAmount.value
+    const annualRate = interestRate.value
+    const termMonths = loanTermMonths.value
+    const salary = monthlySalary.value
+
     return (
-      (loanAmount.value ?? 0) > 0 &&
-      (interestRate.value ?? 0) > 0 &&
-      (loanTermMonths.value ?? 0) > 0 &&
-      (monthlySalary.value ?? 0) > 0
-    );
-  });
+      typeof principal === 'number' &&
+      Number.isFinite(principal) &&
+      principal >= 1_000 &&
+      principal <= 1_000_000 &&
+      typeof annualRate === 'number' &&
+      Number.isFinite(annualRate) &&
+      annualRate >= 0 &&
+      annualRate <= 100 &&
+      typeof termMonths === 'number' &&
+      Number.isInteger(termMonths) &&
+      termMonths >= 1 &&
+      termMonths <= 360 &&
+      typeof salary === 'number' &&
+      Number.isFinite(salary) &&
+      salary >= 500 &&
+      salary <= 20_000
+    )
+  })
 
-  // 4. The Action Function
-  // This executes standard loan amortization math when called.
+  const monthlyPayment = computed(() => {
+    const principal = loanAmount.value
+    const annualRate = interestRate.value
+    const termMonths = loanTermMonths.value
+    if (
+      !isFormValid.value ||
+      principal === null ||
+      annualRate === null ||
+      termMonths === null
+    ) {
+      return 0
+    }
+
+    return calculateMonthlyPayment(principal, annualRate, termMonths)
+  })
+
+  const isAffordable = computed(
+    () => monthlyPayment.value <= (monthlySalary.value ?? 0) * 0.3,
+  )
+  const showReport = computed(() => hasSubmitted.value && isFormValid.value)
+
   const calculateLoan = () => {
-    if (!isFormValid.value) return; // Safety guard
+    if (isFormValid.value) hasSubmitted.value = true
+  }
 
-    const principal = loanAmount.value!;
-    const monthlyRate = interestRate.value! / 100 / 12;
-    const numberOfPayments = loanTermMonths.value!;
-
-    // Standard mortgage/loan amortization formula
-    const payment =
-      (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) /
-      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-
-    // Save the rounded payment amount
-    monthlyPayment.value = Math.round(payment);
-
-    // Apply the 30% rule: payment shouldn't exceed 30% of their salary
-    const safeLimit = monthlySalary.value! * 0.3;
-    isAffordable.value = monthlyPayment.value <= safeLimit;
-
-    // Flip this switch to trigger the report visibility in the UI
-    hasSubmitted.value = true;
-  };
-
-  // 5. Expose everything to the components
   return {
     loanAmount,
     interestRate,
     loanTermMonths,
     monthlySalary,
-    hasSubmitted,
+    hasSubmitted: showReport,
     monthlyPayment,
     isAffordable,
     isFormValid,
     calculateLoan,
-  };
-};
+  }
+}
