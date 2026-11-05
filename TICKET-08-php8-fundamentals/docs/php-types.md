@@ -24,13 +24,14 @@ function formatUsername(string $name): string
     return strtolower(trim($name));
 }
 
-function isValidId(int $id): bool
+function isValidId(int|float $id): bool
 {
-    return $id > 0;
+    return $id > 0 && (is_int($id) || (is_finite($id) && floor($id) === $id));
 }
 
 echo formatUsername('  CHRIS  '); // chris
 var_dump(isValidId(12));          // bool(true)
+var_dump(isValidId(1.5));         // bool(false)
 ```
 
 In `function formatUsername(string $name): string`, the type before `$name` is its parameter type; the type after `):` is the return type.

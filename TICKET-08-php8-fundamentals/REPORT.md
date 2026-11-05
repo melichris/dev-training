@@ -9,7 +9,8 @@
 ## Work Completed
 
 - Scaffolded a Composer project with PSR-4 autoloading (`App\` mapped to `src/`), verified in `vendor/composer/autoload_psr4.php`
-- `src/Helpers.php`: `formatUsername`, `isValidId`, `clampNumber`, ported from the TypeScript utilities, using `declare(strict_types=1)` and a union type (`int|float`)
+- `src/Helpers.php`: `formatUsername`, `isValidId`, `clampNumber`, ported from the TypeScript utilities, using `declare(strict_types=1)` and union types (`int|float`)
+- Updated `isValidId` to accept `int|float` and reject fractional, non-positive, and non-finite IDs, matching the TypeScript `Number.isInteger(id) && id > 0` behavior
 - Demonstrated strict mode: passing `"5"` to an `int` parameter throws `TypeError`; removing `declare` from the calling file makes the same call silently coerce and return `bool(true)`
 - `src/User.php`: constructor promotion, `readonly` properties, nullable `?string $email`; verified that modifying a readonly property throws `Error`
 - Array work in `bin/demo.php`: `array_filter`, `array_map`, `array_values`, an associative array, `print_r`, and a `json_encode` comparison
@@ -17,11 +18,12 @@
 
 ## Test Results
 
-`php -l bin/demo.php`: no syntax errors. `php bin/demo.php` runs with no warnings. Key output:
+`php -l bin/demo.php`, `php -l src/Helpers.php`, and `php -l src/User.php`: no syntax errors. `php bin/demo.php` runs with no warnings. `composer validate --no-check-publish` passes with the optional warning that no license is specified. Key output:
 
 ```
-isValidId('5') in strict file:  TypeError ... must be of type int, string given
+isValidId('5') in strict file:  TypeError ... must be of type int|float, string given
 isValidId('5') without declare: bool(true)
+isValidId(1.5):                bool(false)
 Cannot modify readonly property App\User::$name
 
 Without array_values: {"0":{"id":1,"name":"Exsie"},"2":{"id":3,"name":"chris"}}
@@ -30,9 +32,9 @@ With array_values:    [{"id":1,"name":"Exsie"},{"id":3,"name":"chris"}]
 
 ## Technical Decisions
 
-**`strict_types` in every file.** Without it PHP coerces silently. For argument types, the calling file decides, so each file that makes calls needs its own declaration.
+**`strict_types` in every authored application file.** Without it PHP may coerce scalar arguments. For argument types, the calling file decides, so each authored file that makes calls needs its own declaration; Composer-generated files under `vendor/` are excluded.
 
-**Type does the work of a runtime check.** `isValidId(int $id)` needs no `Number.isInteger` equivalent, because strict mode already rejects `1.5` and `"5"`.
+**Explicit integer check for IDs.** `isValidId(int|float $id)` mirrors TypeScript's positive-integer check, rejecting fractional and non-finite floats as well as non-positive values. Strict scalar typing separately rejects strings such as `"5"` when called from a strict file.
 
 **`array_values` after `array_filter`.** `array_filter` preserves original keys, leaving gaps (`0, 2`). An array with gaps serializes to a JSON object instead of a list, which would break a frontend expecting an array. Reindexing restores a list.
 
@@ -56,7 +58,7 @@ With array_values:    [{"id":1,"name":"Exsie"},{"id":3,"name":"chris"}]
 | Criteria | Status |
 |---|---|
 | Composer project with PSR-4 autoloading | Done |
-| Every file declares `strict_types=1` | Done |
+| Every authored application PHP file declares `strict_types=1` | Done |
 | Three typed functions ported from TypeScript | Done |
 | Strict mode demonstrated with `TypeError` | Done |
 | `User` class: promotion, `readonly`, nullable property | Done |
@@ -69,12 +71,13 @@ With array_values:    [{"id":1,"name":"Exsie"},{"id":3,"name":"chris"}]
 |---|---|
 | `php bin/demo.php` runs without errors or warnings | Done |
 | Technical decisions documented | Done |
-| Screenshot | Pending |
-| Final fix commit (`$filtered`) | Confirm it is committed |
+| Existing `$filtered` fix commit | Done (`ade49c1`) |
+| Follow-up ID parity fix committed | Pending; changes from this review are uncommitted |
 
 ## Open Items
 
 - No automated tests yet; PHPUnit is planned for a later ticket
+- The Composer validator reports only the optional missing-license warning.
 
 ## Next Step
 

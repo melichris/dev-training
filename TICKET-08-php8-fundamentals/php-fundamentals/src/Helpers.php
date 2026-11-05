@@ -11,9 +11,13 @@ class Helpers
         return strtolower(trim($name));
     }
 
-    public static function isValidId(int $id): bool
+    public static function isValidId(int|float $id): bool
     {
-        return $id > 0;
+        if ($id <= 0) {
+            return false;
+        }
+
+        return is_int($id) || (is_finite($id) && floor($id) === $id);
     }
 
     public static function clampNumber(int|float $value, int|float $min, int|float $max): int|float

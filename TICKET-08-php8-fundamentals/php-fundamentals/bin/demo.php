@@ -20,6 +20,7 @@ section('isValidId');
 var_dump(Helpers::isValidId(5));
 var_dump(Helpers::isValidId(0));
 var_dump(Helpers::isValidId(-3));
+var_dump(Helpers::isValidId(1.5));
 
 section('clampNumber');
 echo Helpers::clampNumber(-5, 1, 10) . "\n";

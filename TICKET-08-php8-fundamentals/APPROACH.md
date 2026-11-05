@@ -8,7 +8,7 @@
 1. **Scaffold.** `mkdir php-fundamentals && cd php-fundamentals`, `composer init`, then add to `composer.json`:
    `"autoload": { "psr-4": { "App\\": "src/" } }`. Run `composer dump-autoload`. Create `src/` and `bin/`.
 
-2. **Typed functions.** `src/Helpers.php` in namespace `App` with static methods `formatUsername(string): string`, `isValidId(int): bool`, `clampNumber(int|float, int|float, int|float): int|float`. File starts with `declare(strict_types=1);`.
+2. **Typed functions.** `src/Helpers.php` in namespace `App` with static methods `formatUsername(string): string`, `isValidId(int|float): bool`, `clampNumber(int|float, int|float, int|float): int|float`. `isValidId` accepts numeric inputs and returns false for non-positive or fractional IDs, matching TypeScript's `Number.isInteger` behavior. The file starts with `declare(strict_types=1);`.
 
 3. **Strict mode demo.** In `bin/demo.php`, call `Helpers::isValidId("5")` inside a try/catch for `TypeError` and print the message. Then remove `strict_types` from the calling file, rerun, and observe the silent coercion. Restore it afterwards.
 
@@ -20,7 +20,7 @@
 
 ## Key Rules
 
-- `declare(strict_types=1);` must be the first statement in the file (before the namespace)
+- Every authored application PHP file must declare `strict_types=1`; Composer-generated files in `vendor/` are excluded.
 - No manual `require` for classes, only `require __DIR__ . '/../vendor/autoload.php'`
 - One class per file, filename matches class name (PSR-4)
 - Use `->` for object access, `$this->` inside methods
