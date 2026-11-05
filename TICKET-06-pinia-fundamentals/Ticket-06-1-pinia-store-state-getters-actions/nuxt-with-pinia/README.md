@@ -36,20 +36,18 @@ nuxt-with-pinia/
 ├── app/
 │   ├── components/
 │   ├── pages/
+│   ├── stores/
+│   │   ├── counter.ts
+│   │   └── theme.ts
 │   └── app.vue
-├── stores/
-│   └── example-store.ts
-├── docs/
-│   ├── pinia-store.md
-│   ├── pinia-state.md
-│   ├── pinia-getters.md
-│   ├── pinia-actions.md
 ├── nuxt.config.ts
 ├── package.json
 ├── tsconfig.json
 ├── README.md
 └── public/
 ```
+
+The learning notes are in the ticket-level `../docs/` directory.
 
 ## Getting Started
 
@@ -62,6 +60,12 @@ Then open:
 
 - `http://localhost:3000`
 
+## Type Checking
+
+```bash
+npm run typecheck
+```
+
 ## Out of Scope
 
 - Pinia persistence / localStorage syncing
@@ -72,7 +76,8 @@ Then open:
 ## Related Documents
 
 - [`../TICKET.md`](../TICKET.md) — scope, acceptance criteria, and learning goals
-- [`../REPORT.md`](../REPORT.md) — implementation notes and technical decisions
+- [`../REPORT-05-11-2026.md`](../REPORT-05-11-2026.md) — current remediation and verification
+- [`../REPORT.md`](../REPORT.md) — original implementation notes and technical decisions
 - [`../docs/pinia-store.md`](../docs/pinia-store.md) — summary of stores
 - [`../docs/pinia-state.md`](../docs/pinia-state.md) — reactive state concepts
 - [`../docs/pinia-getters.md`](../docs/pinia-getters.md) — derived values and `storeToRefs`

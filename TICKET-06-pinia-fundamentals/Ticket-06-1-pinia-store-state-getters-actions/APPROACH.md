@@ -22,7 +22,7 @@
 
 4. **Use the store across multiple components** — create a second component (e.g. a sibling display-only component) that also consumes `useCounterStore()`, rendered alongside the first in `index.vue`. Trigger the action from one component and confirm the state change is visible in the other, with no props or emits involved — proving Pinia's global reactivity.
 
-5. **Demonstrate `storeToRefs`** — first, intentionally destructure state/getters directly from the store (`const { count } = useCounterStore()`) and show that this breaks reactivity (the destructured value stops updating). Then correct it using `storeToRefs()`, and confirm reactivity is restored. This step is deliberately built as "break it, then fix it" so the reasoning is memorable, not just the correct syntax.
+5. **Demonstrate `storeToRefs`** — show a plain-destructured primitive snapshot next to reactive state and a getter from `storeToRefs()`. Change the counter and confirm the snapshot remains at its initial value while the refs update. This side-by-side comparison makes the reactivity pitfall observable without leaving broken code in the working example.
 
 6. **Implement state reset** — add a `$reset()` call or a custom `resetState` action, and demonstrate it restoring the store to its initial values after the state has been changed.
 

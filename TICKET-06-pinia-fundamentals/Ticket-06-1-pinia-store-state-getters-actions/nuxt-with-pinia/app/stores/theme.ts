@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 export const useThemeStore = defineStore("theme", {
-  state: () => ({
+  state: (): { isDark: boolean } => ({
     isDark: false,
   }),
   getters: {
-    themeLabel: (state) => (state.isDark ? "Dark" : "Light"),
+    themeLabel: (state): "Dark" | "Light" => (state.isDark ? "Dark" : "Light"),
   },
   actions: {
     toggleTheme() {

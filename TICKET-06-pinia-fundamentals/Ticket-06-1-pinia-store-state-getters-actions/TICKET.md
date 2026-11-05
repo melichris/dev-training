@@ -3,7 +3,7 @@
 **Type:** Training / Skill Development
 **Category:** Frontend — Nuxt 4 / Pinia
 **Project:** `nuxt-with-pinia` (new, dedicated Nuxt 4 project)
-**Status:** Awaiting QA-review
+**Status:** Implementation verified locally; remediation changes await commit and QA review
 
 ## Description
 
@@ -39,7 +39,7 @@ Without this foundation, there is a risk of:
 **3. Multiple Getters & Actions**
 
 - Add a second getter that depends on more than one state property
-- Add an action that takes a parameter and updates state conditionally
+- Add an action that takes a parameter and validates it before updating state
 - Add an action that calls another action internally (via `this`)
 
 **4. Using a Store Across Multiple Components**
@@ -72,12 +72,12 @@ Without this foundation, there is a risk of:
 
 ## Acceptance Criteria
 
-- [ ] Pinia and `@pinia/nuxt` correctly installed and configured in `nuxt-with-pinia`
-- [ ] A store is defined with `state`, multiple `getters` (including one depending on multiple state properties), and multiple `actions` (including one taking a parameter, and one action calling another)
-- [ ] The store is consumed in at least two different components, with changes in one visibly reflected in the other
-- [ ] `storeToRefs` is correctly used to destructure reactive state/getters, with the reactivity-loss problem demonstrated first (destructuring without it) for comparison
-- [ ] A reset-to-initial-state mechanism is implemented and demonstrated
-- [ ] No TypeScript errors (` vue-tsc --build` clean)
+- [x] Pinia and `@pinia/nuxt` correctly installed and configured in `nuxt-with-pinia`
+- [x] A store is defined with `state`, multiple `getters` (including one depending on multiple state properties), and multiple `actions` (including one taking a parameter, and one action calling another)
+- [x] The store is consumed in at least two different components, with changes in one visibly reflected in the other
+- [x] `storeToRefs` is correctly used to destructure reactive state/getters, with the reactivity-loss problem demonstrated side-by-side using a plain destructuring snapshot
+- [x] A reset-to-initial-state mechanism is implemented and demonstrated
+- [x] No TypeScript errors (`npm run typecheck` clean)
 
 ## Risks & Open Points
 
@@ -88,8 +88,8 @@ Without this foundation, there is a risk of:
 
 ## Definition of Done
 
-- [ ] Implementation completed and manually tested in the browser for every core feature listed above
-- [ ] Code compiles with zero TypeScript errors
-- [ ] Evidence captured (screenshots demonstrating cross-component reactivity and the reset behavior)
-- [ ] Technical decisions and difficulties documented
+- [x] Implementation completed and manually tested in the browser for every core feature listed above
+- [x] Code compiles with zero TypeScript errors
+- [x] Evidence captured (screenshots demonstrating cross-component reactivity and the reset behavior)
+- [x] Technical decisions and difficulties documented
 - [ ] Code committed with clear, descriptive commit messages
